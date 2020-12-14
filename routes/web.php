@@ -18,11 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/dashboard', [PagesController::class, 'dashboard']);
-Auth::routes();
+Route::get('/users', [PagesController::class, 'user']);
+Route::get('/projects', [PagesController::class, 'project']);
+Route::get('/tickets', [PagesController::class, 'ticket']);
+Route::get('/profile', [PagesController::class, 'profile']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
