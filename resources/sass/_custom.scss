@@ -46,6 +46,7 @@
 }
 
 .horizontal-navbar {
+    height: 50px;
     position: fixed;
     width: 100%;
     padding-left: 75px;
@@ -94,5 +95,5 @@
     top: 50%;
     transform: translate(0%, -50%);
     color: #f0f0f0;
-    font-size: 18px;
+    font-size: 16px;
 }
