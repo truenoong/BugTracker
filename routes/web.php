@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/', [PagesController::class, 'login']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [PagesController::class, 'dashboard']);
@@ -28,4 +30,9 @@ Route::get('/projects', [PagesController::class, 'project']);
 Route::get('/tickets', [PagesController::class, 'ticket']);
 Route::get('/profile', [PagesController::class, 'profile']);
 
+Route::resource('users', 'App\Http\Controllers\UsersController');
+Route::resource('projects', 'App\Http\Controllers\ProjectsController');
+Route::resource('tickets', 'App\Http\Controllers\TicketsController');
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

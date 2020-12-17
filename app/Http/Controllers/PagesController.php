@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    public function login(){
+        $title = 'Login';
+        return view('auth.login')->with($title);
+    }
+
     public function dashboard(){
         $title = 'Dashboard';
         return view('pages.dashboard')->with($title);
@@ -13,17 +18,17 @@ class PagesController extends Controller
 
     public function user(){
         $title = 'Users';
-        return view('pages.users')->with($title);
+        return view('users.index')->with($title);
     }
 
     public function project(){
         $title = 'Projects';
-        return view('pages.projects')->with($title);
+        return view('projects.index')->with($title);
     }
 
     public function ticket(){
         $title = 'Tickets';
-        return view('pages.tickets')->with($title);
+        return view('tickets.index')->with($title);
     }
 
     public function profile(){

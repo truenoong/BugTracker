@@ -93,7 +93,13 @@
         <title>{{config('app.name', 'BugTracker')}}</title>
     </head>
     <body>
+        <ul class="nav navbar-nav navbar-right">
+        @guest
+        @include('inc/guestnavbar')
+        </ul>
+        @else
         @include('inc/navbar')
+        @endguest 
         <div class="container">
             @yield('content')
         </div>
