@@ -1,3 +1,17 @@
+
+@guest
+
+<nav class="navbar horizontal-navbar navbar-expand-lg navbar-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <a href="/" id="login" class="icon-search icon-nav nav-link text-dark font-italic">Login</a>
+        <a href="/register" id="register" class="icon-profile icon-nav nav-link text-dark font-italic">Register</a>
+    </div>
+</nav>
+
+@else
+
 <!-- Horizontal navbar -->
 <nav class="navbar horizontal-navbar navbar-expand-lg navbar-light">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -47,3 +61,5 @@
     </ul>
 </div>
 <!-- End of vertical navbar -->
+
+@endguest

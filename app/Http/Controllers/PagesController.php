@@ -11,9 +11,14 @@ class PagesController extends Controller
         return view('auth.login')->with($title);
     }
 
+    public function register(){
+        $title = 'Register';
+        return view('auth.register')->with($title);
+    }
+
     public function dashboard(){
         $title = 'Dashboard';
-        return view('pages.dashboard')->with($title);
+        return view('dashboard')->with($title);
     }
 
     public function user(){
