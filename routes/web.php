@@ -27,6 +27,7 @@ Route::get('/profile', [PagesController::class, 'profile']);
 Route::resource('users', 'App\Http\Controllers\UsersController');
 Route::resource('projects', 'App\Http\Controllers\ProjectsController');
 Route::resource('tickets', 'App\Http\Controllers\TicketsController');
+
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
