@@ -10978,7 +10978,7 @@ a.text-dark:focus {
 }
 
 .horizontal-nav-text {
-  color: #f0f0f0;
+  color: #f0f0f0 !important;
   text-align: center;
   font-size: 16px;
   font-style: normal;
