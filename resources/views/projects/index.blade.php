@@ -8,7 +8,7 @@
         <a href="/projects/create"><button type="button" class="btn btn-primary action-buttons">Create a project</button></a>
     </div>
 </div>
-<br />
+<br/>
 <table class="table">
     <thead>
         <tr>
@@ -16,6 +16,7 @@
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Created at</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody id="tbody">
@@ -26,7 +27,6 @@
             <td>{{$project->project_name}}</td>
             <td>{{$project->project_desc}}</td>
             <td>{{$project->created_at}}</td>
-            <td>
             <td>
                 <div class="d-flex flex-column">
                     <div class="d-flex flex-row">
@@ -40,7 +40,6 @@
                         </div>
                     </div>
                 </div>
-            </td>
             </td>
         </tr>
         @endforeach

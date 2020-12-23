@@ -8,6 +8,7 @@
 		<a href="/tickets/create"><button type="button" class="btn btn-primary action-buttons">Create a ticket</button></a>
 	</div>
 </div>
+<br/>
 <table class="table">
 	<thead>
 		<tr>
@@ -18,6 +19,7 @@
 			<th scope="col">Status</th>
 			<th scope="col">Priority</th>
 			<th scope="col">Created at</th>
+			<th scope="col">Actions</th>
 		</tr>
 	</thead>
 	<tbody id="tbody">

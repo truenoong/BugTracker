@@ -7,6 +7,7 @@
         <a href="/users/create"><button type="button" class="btn btn-primary action-buttons">Create a user</button></a>
     </div>
 </div>
+<br/>
 <table class="table">
     <thead>
         <tr>
@@ -14,6 +15,7 @@
             <th scope="col">Userame</th>
             <th scope="col">Email</th>
             <th scope="col">Created at</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody id="tbody">
