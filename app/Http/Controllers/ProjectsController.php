@@ -25,7 +25,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -36,7 +36,17 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        $project = new Project;
+        $project->project_name = $request->input("name");
+        $project->project_desc = $request->input("description");
+        $project->save();
+
+        return redirect('/projects')->with('success', 'Successfully Created a New Project');
     }
 
     /**
@@ -47,7 +57,8 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        return view('projects.show')->with('project', $project);
     }
 
     /**
@@ -58,7 +69,8 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+        return view('projects.edit')->with('project', $project);
     }
 
     /**
@@ -70,7 +82,17 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        $project = Project::find($id);
+        $project->project_name = $request->input("name");
+        $project->project_desc = $request->input("description");
+        $project->save();
+
+        return redirect('/projects')->with('success', 'Successfully updated');
     }
 
     /**
@@ -81,6 +103,8 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+        $project->delete();
+        return redirect('/projects')->with('success', 'Successfully deleted');
     }
 }

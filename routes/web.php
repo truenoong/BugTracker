@@ -13,6 +13,7 @@
 |
 */
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', [PagesController::class, 'login']);
 Route::get('/register', [PagesController::class, 'register']);
