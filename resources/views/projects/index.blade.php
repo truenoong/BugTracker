@@ -5,7 +5,7 @@
 
 <div class="row justify-content-end">
     <div>
-        <a href="/projects/create"><button type="button" class="btn">Create a project</button></a>
+        <a href="/projects/create"><button type="button" class="btn btn-primary action-buttons">Create a project</button></a>
     </div>
 </div>
 <br />

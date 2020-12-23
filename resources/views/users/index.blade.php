@@ -4,7 +4,7 @@
 <h1>{{$title ?? 'Users'}}</h1>
 <div class="row justify-content-end">
     <div>
-        <a href="/users/create"><button type="button" class="btn btn-warning">Create a user</button></a>
+        <a href="/users/create"><button type="button" class="btn btn-primary action-buttons">Create a user</button></a>
     </div>
 </div>
 <table class="table">

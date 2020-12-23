@@ -5,7 +5,7 @@
 
 <div class="row justify-content-end">
 	<div>
-		<a href="/tickets/create"><button type="button" class="btn">Create a ticket</button></a>
+		<a href="/tickets/create"><button type="button" class="btn btn-primary action-buttons">Create a ticket</button></a>
 	</div>
 </div>
 <table class="table">
