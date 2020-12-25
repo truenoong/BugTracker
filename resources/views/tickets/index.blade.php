@@ -14,11 +14,11 @@
 		<tr>
 			<th scope="col">#</th>
 			<th scope="col">Name</th>
-			<th scope="col">Description</th>
 			<th scope="col">Type</th>
 			<th scope="col">Status</th>
 			<th scope="col">Priority</th>
 			<th scope="col">Created at</th>
+			<th scope="col">Due Date</th>
 			<th scope="col">Actions</th>
 		</tr>
 	</thead>
@@ -28,11 +28,31 @@
 		<tr>
 			<td>{{$ticket->ticket_id}}</td>
 			<td>{{$ticket->ticket_name}}</td>
-			<td>{{$ticket->ticket_desc}}</td>
-			<td>{{$ticket->ticket_type}}</td>
-			<td>{{$ticket->ticket_status}}</td>
-			<td>{{$ticket->ticket_priority}}</td>
-			<td>{{$ticket->created_at}}</td>
+			@foreach($types as $type)
+				<td>{{$type->type_name}}</td>
+			@endforeach
+			@foreach($statuses as $status)
+				<td>{{$status->status_name}}</td>
+			@endforeach
+			@foreach($priorities as $priority)
+				<td>{{$priority->priority_name}}</td>
+			@endforeach
+			<td>{{$ticket->created_at->format('d/m/Y')}}</td>
+			<td>{{$ticket->due_date->format('d/m/Y')}}</td>
+			<td>
+                <div class="d-flex flex-column">
+                    <div class="d-flex flex-row">
+                        <div class="p-2">
+                            <a href="/tickets/{{$ticket->ticket_id}}"><button type="button"
+                                    class="btn btn-primary action-buttons">View More</button></a>
+                        </div>
+                        <div class="p-2">
+                            <a href="/tickets/{{$ticket->ticket_id}}/edit"><button type="button"
+                                    class="btn btn-primary action-buttons">Edit</button></a>
+                        </div>
+                    </div>
+                </div>
+            </td>
 		</tr>
 		@endforeach
 		@else
