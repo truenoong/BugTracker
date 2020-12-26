@@ -4,7 +4,8 @@
 <div class="content">
     <h1>Create Ticket</h1>
 
-    {!! Form::open(['action' => 'App\Http\Controllers\TicketsController@store', 'method' => 'POST']) !!}
+    {!! Form::open(['action' => ['App\Http\Controllers\TicketsController@update', $ticket->ticket_id], 'method' =>
+    'POST']) !!}
     <div class="form-group">
         {{Form::label('name', 'Name')}}
         {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Ticket Name'])}}
@@ -35,6 +36,7 @@
         {!! Form::Label('due_date', 'Due date:') !!}
         {!! Form::input('date', 'due_date', '', null, ['class' => 'form-control date']) !!}
     </div>
+    {{Form::hidden('_method', 'PUT')}}
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}
 </div>

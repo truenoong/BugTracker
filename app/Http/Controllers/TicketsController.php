@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Ticket;
 use App\Models\TicketType;
+use App\Models\TicketStatus;
+use App\Models\TicketPriority;
 use App\Models\User;
 
 class TicketsController extends Controller
@@ -20,16 +22,7 @@ class TicketsController extends Controller
     {
         $tickets = Ticket::orderBy('ticket_id')->get();
 
-        $ticket_type = Ticket::pluck('ticket_type');
-        $types = DB::table('ticket_types')->where('type_id', '=', $ticket_type)->get();
-
-        $ticket_status = Ticket::pluck('ticket_status');
-        $statuses = DB::table('ticket_statuses')->where('status_id', '=', $ticket_status)->get();
-
-        $ticket_priority = Ticket::pluck('ticket_priority');
-        $priorities = DB::table('ticket_priorities')->where('priority_id', '=', $ticket_priority)->get();
-
-        return view('tickets.index')->with('tickets', $tickets)->with('types', $types)->with('statuses', $statuses)->with('priorities', $priorities);
+        return view('tickets.index')->with('tickets', $tickets);
     }
 
     /**
@@ -63,9 +56,9 @@ class TicketsController extends Controller
         $ticket = new Ticket;
         $ticket->ticket_name = $request->input("name");
         $ticket->ticket_desc = $request->input("description");
-        $ticket->ticket_type = $request->input('ticket_types');
-        $ticket->ticket_status = $request->input('ticket_statuses');
-        $ticket->ticket_priority = $request->input('ticket_priorities');
+        $ticket->ticket_type_id = $request->input('ticket_types');
+        $ticket->ticket_status_id = $request->input('ticket_statuses');
+        $ticket->ticket_priority_id = $request->input('ticket_priorities');
         $ticket->assigned_user = $request->input('assigned_user');
         $ticket->due_date = Carbon::parse($request->input('due_date'));
         $ticket->save();
@@ -81,7 +74,8 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        return view('tickets.show')->with('ticket', $ticket);
     }
 
     /**
@@ -92,7 +86,8 @@ class TicketsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        return view('tickets.edit')->with('ticket', $ticket);
     }
 
     /**
@@ -104,7 +99,22 @@ class TicketsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        $ticket = Ticket::find($id);
+        $ticket->ticket_name = $request->input("name");
+        $ticket->ticket_desc = $request->input("description");
+        $ticket->ticket_type_id = $request->input('ticket_types');
+        $ticket->ticket_status_id = $request->input('ticket_statuses');
+        $ticket->ticket_priority_id = $request->input('ticket_priorities');
+        $ticket->assigned_user = $request->input('assigned_user');
+        $ticket->due_date = Carbon::parse($request->input('due_date'));
+        $ticket->save();
+
+        return redirect('/tickets')->with('success', 'Successfully updated');
     }
 
     /**
@@ -115,6 +125,8 @@ class TicketsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        $ticket->delete();
+        return redirect('/tickets')->with('success', 'Successfully deleted');
     }
 }

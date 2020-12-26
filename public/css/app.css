@@ -11005,9 +11005,48 @@ a.text-dark:focus {
   width: 30px;
 }
 
+.content {
+  margin-top: 55px;
+  margin-left: 65px;
+}
+
 .container {
   min-height: 100vh;
   padding: 10px 0px;
+}
+
+@media (min-width: 576px) {
+  .container-sm,
+  .container {
+    max-width: 690px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 870px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 1110px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 1290px;
+  }
 }
 
 .greeting {
@@ -11016,5 +11055,21 @@ a.text-dark:focus {
   transform: translate(0%, -50%);
   color: #f0f0f0;
   font-size: 16px;
+}
+
+.align-left {
+  float: left;
+}
+
+.align-right {
+  float: right;
+}
+
+.p-2 {
+  padding: 0 0.5rem 0 0.5rem !important;
+}
+
+.table-buttons {
+  line-height: 0.65;
 }
 

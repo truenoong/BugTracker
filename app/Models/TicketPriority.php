@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class TicketPriority extends Model
 {
     use HasFactory;
-    public $primaryKey = 'project_id';
-    public $timestamps = true;
+    protected $table = 'ticket_priorities';
 }
