@@ -10,6 +10,7 @@ use App\Models\TicketType;
 use App\Models\TicketStatus;
 use App\Models\TicketPriority;
 use App\Models\User;
+use App\Models\AssignedDeveloper;
 
 class TicketsController extends Controller
 {
@@ -56,12 +57,18 @@ class TicketsController extends Controller
         $ticket = new Ticket;
         $ticket->ticket_name = $request->input("name");
         $ticket->ticket_desc = $request->input("description");
-        $ticket->ticket_type_id = $request->input('ticket_types');
-        $ticket->ticket_status_id = $request->input('ticket_statuses');
-        $ticket->ticket_priority_id = $request->input('ticket_priorities');
-        $ticket->assigned_user = $request->input('assigned_user');
+        $ticket->type_id = $request->input('ticket_types');
+        $ticket->status_id = $request->input('ticket_statuses');
+        $ticket->priority_id = $request->input('ticket_priorities');
         $ticket->due_date = Carbon::parse($request->input('due_date'));
         $ticket->save();
+
+        foreach($request->assigned_developers as $assigned_developer) {
+            AssignedDeveloper::create([
+                'ticket_id' => $ticket->ticket_id,
+                'id' => $assigned_developer
+            ]);
+        }
 
         return redirect('/tickets')->with('success', 'Successfully Created a New Ticket');
     }
@@ -126,6 +133,8 @@ class TicketsController extends Controller
     public function destroy($id)
     {
         $ticket = Ticket::find($id);
+        $assignedDeveloper = AssignedDeveloper::where('ticket_id', '=', $id);
+        $assignedDeveloper->delete();
         $ticket->delete();
         return redirect('/tickets')->with('success', 'Successfully deleted');
     }

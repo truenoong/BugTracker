@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Project;
 use App\Models\ProjectManager;
+use App\Models\ProjectDeveloper;
 
 class ProjectsController extends Controller
 {
@@ -49,10 +50,17 @@ class ProjectsController extends Controller
         $project->project_desc = $request->input("description");
         $project->save();
 
-        foreach($request->project_manager as $project_manager) {
+        foreach($request->project_managers as $project_manager) {
             ProjectManager::create([
                 'project_id' => $project->project_id,
                 'id' => $project_manager
+            ]);
+        }
+
+        foreach($request->project_developers as $project_developer) {
+            ProjectDeveloper::create([
+                'project_id' => $project->project_id,
+                'id' => $project_developer
             ]);
         }
 
@@ -116,6 +124,8 @@ class ProjectsController extends Controller
         $project = Project::find($id);
         $projectManager = ProjectManager::where('project_id', '=', $id);
         $projectManager->delete();
+        $projectDeveloper = ProjectDeveloper::where('project_id', '=', $id);
+        $projectDeveloper->delete();
         $project->delete();
         
         return redirect('/projects')->with('success', 'Successfully deleted');
