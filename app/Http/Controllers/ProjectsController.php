@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Project;
+use App\Models\ProjectManager;
 
 class ProjectsController extends Controller
 {
@@ -25,7 +27,8 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $users = DB::table('users')->pluck('name', 'id');
+        return view('projects.create')->with('users', $users);
     }
 
     /**
@@ -45,6 +48,13 @@ class ProjectsController extends Controller
         $project->project_name = $request->input("name");
         $project->project_desc = $request->input("description");
         $project->save();
+
+        foreach($request->project_manager as $project_manager) {
+            ProjectManager::create([
+                'project_id' => $project->project_id,
+                'id' => $project_manager
+            ]);
+        }
 
         return redirect('/projects')->with('success', 'Successfully Created a New Project');
     }
@@ -104,7 +114,10 @@ class ProjectsController extends Controller
     public function destroy($id)
     {
         $project = Project::find($id);
+        $projectManager = ProjectManager::where('project_id', '=', $id);
+        $projectManager->delete();
         $project->delete();
+        
         return redirect('/projects')->with('success', 'Successfully deleted');
     }
 }

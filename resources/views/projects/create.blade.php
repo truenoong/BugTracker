@@ -13,6 +13,10 @@
         {{Form::label('description', 'Description')}}
         {{Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'Project Description'])}}
     </div>
+    <div class="form-group">
+        {{Form::label('project_manager', 'Project Manager')}}
+        {{Form::select('project_manager', $users, null, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'project_manager[]'])}}
+    </div>
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}
 </div>
