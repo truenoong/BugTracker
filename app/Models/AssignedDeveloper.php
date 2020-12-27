@@ -9,7 +9,10 @@ class AssignedDeveloper extends Model
 {
     use HasFactory;
     protected $table = 'assigned_developers';
+    protected $fillable = ['ticket_id', 'id'];
     public $timestamps = false;
 
-    protected $fillable = ['ticket_id', 'id'];
+    public function assignedDeveloper() {
+        return $this->belongsTo('App\Models\User', 'id', 'id');
+    }
 }

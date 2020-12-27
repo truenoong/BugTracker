@@ -82,7 +82,9 @@ class TicketsController extends Controller
     public function show($id)
     {
         $ticket = Ticket::find($id);
-        return view('tickets.show')->with('ticket', $ticket);
+        $assignedDevelopers = AssignedDeveloper::where('ticket_id', '=', $id)->get();
+
+        return view('tickets.show')->with('ticket', $ticket)->with('assignedDevelopers', $assignedDevelopers);
     }
 
     /**

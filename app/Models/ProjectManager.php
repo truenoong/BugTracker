@@ -9,7 +9,10 @@ class ProjectManager extends Model
 {
     use HasFactory;
     protected $table = 'project_managers';
+    protected $fillable = ['project_id', 'id'];
     public $timestamps = false;
 
-    protected $fillable = ['project_id', 'id'];
+    public function projectManager() {
+        return $this->belongsTo('App\Models\User', 'id', 'id');
+    }
 }

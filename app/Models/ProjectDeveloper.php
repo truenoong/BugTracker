@@ -9,7 +9,10 @@ class ProjectDeveloper extends Model
 {
     use HasFactory;
     protected $table = 'project_developers';
+    protected $fillable = ['project_id', 'id'];
     public $timestamps = false;
 
-    protected $fillable = ['project_id', 'id'];
+    public function projectDeveloper() {
+        return $this->belongsTo('App\Models\User', 'id', 'id');
+    }
 }
