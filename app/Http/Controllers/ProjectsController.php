@@ -91,7 +91,9 @@ class ProjectsController extends Controller
     {
         $project = Project::find($id);
         $users = DB::table('users')->pluck('name', 'id');
-        return view('projects.edit')->with('project', $project)->with('users', $users);
+        $projectManagers = DB::table('project_managers')->where('project_id', '=', $id)->pluck('id');
+        $projectDevelopers = DB::table('project_developers')->where('project_id', '=', $id)->pluck('id');
+        return view('projects.edit')->with('project', $project)->with('users', $users)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers);
     }
 
     /**

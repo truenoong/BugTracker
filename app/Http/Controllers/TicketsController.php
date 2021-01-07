@@ -93,7 +93,8 @@ class TicketsController extends Controller
         $ticket_statuses = DB::table('ticket_statuses')->pluck('status_name', 'status_id');
         $ticket_priorities = DB::table('ticket_priorities')->pluck('priority_name', 'priority_id');
         $users = DB::table('users')->pluck('name', 'id');
-        return view('tickets.edit')->with('ticket', $ticket)->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities)->with('users', $users);
+        $assignedDevelopers = DB::table('assigned_developers')->where('ticket_id', '=', $id)->pluck('id');
+        return view('tickets.edit')->with('ticket', $ticket)->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities)->with('users', $users)->with('assignedDevelopers', $assignedDevelopers);
     }
 
     /**

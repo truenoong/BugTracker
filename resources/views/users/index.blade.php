@@ -23,6 +23,20 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->created_at}}</td>
+                <td>
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-row">
+                            <div class="p-2">
+                                <a href="/users/{{$user->id}}"><button type="button"
+                                        class="btn btn-primary action-buttons table-buttons">View More</button></a>
+                            </div>
+                            <div class="p-2">
+                                <a href="/users/{{$user->id}}/edit"><button type="button"
+                                        class="btn btn-primary action-buttons table-buttons">Edit</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
             @endforeach
             @else

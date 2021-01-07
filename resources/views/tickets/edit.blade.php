@@ -33,7 +33,7 @@
         </div>
         <div class="form-group col-md-12">
             {{Form::label('assigned_developers', 'Assign to:')}}
-            {{Form::select('assigned_developers', $users, true, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'assigned_developers[]'])}}
+            {{Form::select('assigned_developers', $users, $assignedDevelopers, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'assigned_developers[]'])}}
         </div>
     </div>
     {{Form::hidden('_method', 'PUT')}}

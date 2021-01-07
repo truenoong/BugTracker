@@ -25,7 +25,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $users = DB::table('users')->pluck('name', 'id');
+        return view('users.create')->with('users', $users);
     }
 
     /**
@@ -36,7 +37,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $user->name = $request->input("name");
+        $user->email = $request->input("email");
+        $user->password = Hash::make($request->input("password"));
+        $user->role_id = $request->input("role");
+        $user->save();
     }
 
     /**
