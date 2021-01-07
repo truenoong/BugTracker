@@ -63,13 +63,6 @@ class TicketsController extends Controller
         $ticket->due_date = Carbon::parse($request->input('due_date'));
         $ticket->save();
 
-        foreach($request->assigned_developers as $assigned_developer) {
-            AssignedDeveloper::create([
-                'ticket_id' => $ticket->ticket_id,
-                'id' => $assigned_developer
-            ]);
-        }
-
         return redirect('/tickets')->with('success', 'Successfully Created a New Ticket');
     }
 
@@ -96,7 +89,11 @@ class TicketsController extends Controller
     public function edit($id)
     {
         $ticket = Ticket::find($id);
-        return view('tickets.edit')->with('ticket', $ticket);
+        $ticket_types = DB::table('ticket_types')->pluck('type_name', 'type_id');
+        $ticket_statuses = DB::table('ticket_statuses')->pluck('status_name', 'status_id');
+        $ticket_priorities = DB::table('ticket_priorities')->pluck('priority_name', 'priority_id');
+        $users = DB::table('users')->pluck('name', 'id');
+        return view('tickets.edit')->with('ticket', $ticket)->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities)->with('users', $users);
     }
 
     /**
@@ -116,12 +113,21 @@ class TicketsController extends Controller
         $ticket = Ticket::find($id);
         $ticket->ticket_name = $request->input("name");
         $ticket->ticket_desc = $request->input("description");
-        $ticket->ticket_type_id = $request->input('ticket_types');
-        $ticket->ticket_status_id = $request->input('ticket_statuses');
-        $ticket->ticket_priority_id = $request->input('ticket_priorities');
-        $ticket->assigned_user = $request->input('assigned_user');
+        $ticket->type_id = $request->input('ticket_types');
+        $ticket->status_id = $request->input('ticket_statuses');
+        $ticket->priority_id = $request->input('ticket_priorities');
         $ticket->due_date = Carbon::parse($request->input('due_date'));
         $ticket->save();
+
+        $assignedDeveloper = AssignedDeveloper::where('ticket_id', '=', $id);
+        $assignedDeveloper->delete();
+
+        foreach($request->assigned_developers as $assigned_developer) {
+            AssignedDeveloper::create([
+                'ticket_id' => $ticket->ticket_id,
+                'id' => $assigned_developer
+            ]);
+        }
 
         return redirect('/tickets')->with('success', 'Successfully updated');
     }

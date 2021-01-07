@@ -26,10 +26,6 @@
             {!! Form::Label('ticket_priorities', 'Ticket Priority') !!}
             {!! Form::select('ticket_priorities', $ticket_priorities, null, ['class' => 'form-control']) !!}
         </div>
-        <div class="form-group col-md-6">
-            {{Form::label('assigned_developers', 'Assign to:')}}
-            {{Form::select('assigned_developers', $users, null, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'assigned_developers[]'])}}
-        </div>
     </div>
     <div class="form-group">
         {!! Form::Label('due_date', 'Due date:') !!}

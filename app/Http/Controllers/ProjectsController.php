@@ -90,7 +90,8 @@ class ProjectsController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        return view('projects.edit')->with('project', $project);
+        $users = DB::table('users')->pluck('name', 'id');
+        return view('projects.edit')->with('project', $project)->with('users', $users);
     }
 
     /**
@@ -111,6 +112,25 @@ class ProjectsController extends Controller
         $project->project_name = $request->input("name");
         $project->project_desc = $request->input("description");
         $project->save();
+
+        $projectManager = ProjectManager::where('project_id', '=', $id);
+        $projectManager->delete();
+        $projectDeveloper = ProjectDeveloper::where('project_id', '=', $id);
+        $projectDeveloper->delete();
+
+        foreach($request->project_managers as $project_manager) {
+            ProjectManager::create([
+                'project_id' => $project->project_id,
+                'id' => $project_manager
+            ]);
+        }
+
+        foreach($request->project_developers as $project_developer) {
+            ProjectDeveloper::create([
+                'project_id' => $project->project_id,
+                'id' => $project_developer
+            ]);
+        }
 
         return redirect('/projects')->with('success', 'Successfully updated');
     }

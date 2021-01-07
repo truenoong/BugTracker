@@ -8,34 +8,36 @@
     'POST']) !!}
     <div class="form-group">
         {{Form::label('name', 'Name')}}
-        {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Ticket Name'])}}
+        {{Form::text('name', $ticket->ticket_name, ['class' => 'form-control', 'placeholder' => 'Ticket Name'])}}
     </div>
     <div class="form-group">
         {{Form::label('description', 'Description')}}
-        {{Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'Ticket Description'])}}
+        {{Form::textarea('description', $ticket->ticket_desc, ['class' => 'form-control', 'placeholder' => 'Ticket Description'])}}
     </div>
     <div class="row">
         <div class="form-group col-md-6">
             {!! Form::Label('ticket_types', 'Ticket Type') !!}
-            {!! Form::select('ticket_types', $ticket_types, null, ['class' => 'form-control']) !!}
+            {!! Form::select('ticket_types', $ticket_types, $ticket->type_id, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group col-md-6">
             {!! Form::Label('ticket_statuses', 'Ticket Status') !!}
-            {!! Form::select('ticket_statuses', $ticket_statuses, null, ['class' => 'form-control']) !!}
+            {!! Form::select('ticket_statuses', $ticket_statuses, $ticket->status_id, ['class' => 'form-control']) !!}
         </div>
-        <div class="form-group col-md-6">
+        <div class="col-md-6">
+        <div class="form-group">
             {!! Form::Label('ticket_priorities', 'Ticket Priority') !!}
-            {!! Form::select('ticket_priorities', $ticket_priorities, null, ['class' => 'form-control']) !!}
+            {!! Form::select('ticket_priorities', $ticket_priorities, $ticket->priority_id, ['class' => 'form-control']) !!}
         </div>
-        <div class="form-group col-md-6">
-            {!! Form::Label('assign', 'Assign to:') !!}
-            {!! Form::select('assigned_user', $users, null, ['class' => 'form-control']) !!}
+        <div class="form-group">
+            {!! Form::Label('due_date', 'Due date:') !!}
+            {!! Form::input('text', 'due_date', $ticket->due_date, ['class' => 'form-control date', 'placeholder' => $ticket->due_date, 'onfocus' => '(this.type="date")', 'onblur' => '(this.type="text")']) !!}
         </div>
     </div>
-    <div class="form-group">
-        {!! Form::Label('due_date', 'Due date:') !!}
-        {!! Form::input('date', 'due_date', '', null, ['class' => 'form-control date']) !!}
+    <div class="form-group col-md-6">
+        {{Form::label('assigned_developers', 'Assign to:')}}
+        {{Form::select('assigned_developers', $users, true, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'assigned_developers[]'])}}
     </div>
+    
     {{Form::hidden('_method', 'PUT')}}
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}
