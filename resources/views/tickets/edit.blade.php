@@ -23,21 +23,19 @@
             {!! Form::Label('ticket_statuses', 'Ticket Status') !!}
             {!! Form::select('ticket_statuses', $ticket_statuses, $ticket->status_id, ['class' => 'form-control']) !!}
         </div>
-        <div class="col-md-6">
-        <div class="form-group">
+        <div class="form-group col-md-6">
             {!! Form::Label('ticket_priorities', 'Ticket Priority') !!}
             {!! Form::select('ticket_priorities', $ticket_priorities, $ticket->priority_id, ['class' => 'form-control']) !!}
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-6">
             {!! Form::Label('due_date', 'Due date:') !!}
-            {!! Form::input('text', 'due_date', $ticket->due_date, ['class' => 'form-control date', 'placeholder' => $ticket->due_date, 'onfocus' => '(this.type="date")', 'onblur' => '(this.type="text")']) !!}
+            {!! Form::input('text', 'due_date', $ticket->due_date->format('d/m/Y'), ['class' => 'form-control date', 'placeholder' => $ticket->due_date->format('d/m/Y'), 'onfocus' => '(this.type="date")', 'onblur' => '(this.type="text")']) !!}
+        </div>
+        <div class="form-group col-md-12">
+            {{Form::label('assigned_developers', 'Assign to:')}}
+            {{Form::select('assigned_developers', $users, true, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'assigned_developers[]'])}}
         </div>
     </div>
-    <div class="form-group col-md-6">
-        {{Form::label('assigned_developers', 'Assign to:')}}
-        {{Form::select('assigned_developers', $users, true, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'assigned_developers[]'])}}
-    </div>
-    
     {{Form::hidden('_method', 'PUT')}}
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}
@@ -46,6 +44,9 @@
 <script type="text/javascript">
     $('.date').datepicker(
             format: 'dd/mm/yyyy'
-        );  
+        );
+
+        var dt = new Date();
+document.getElementByClass("date").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());
 </script>
 @endsection

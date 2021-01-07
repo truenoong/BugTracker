@@ -26,11 +26,12 @@
             {!! Form::Label('ticket_priorities', 'Ticket Priority') !!}
             {!! Form::select('ticket_priorities', $ticket_priorities, null, ['class' => 'form-control']) !!}
         </div>
+        <div class="form-group col-md-6">
+            {!! Form::Label('due_date', 'Due date:') !!}
+            {!! Form::input('date', 'due_date', '', ['class' => 'form-control date']) !!}
+        </div>
     </div>
-    <div class="form-group">
-        {!! Form::Label('due_date', 'Due date:') !!}
-        {!! Form::input('date', 'due_date', '', null, ['class' => 'form-control date']) !!}
-    </div>
+    
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}
 </div>
