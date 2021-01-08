@@ -33,12 +33,11 @@ class TicketsController extends Controller
      */
     public function create()
     {
-        $users = DB::table('users')->pluck('name', 'id');
         $ticket_types = DB::table('ticket_types')->pluck('type_name', 'type_id');
         $ticket_statuses = DB::table('ticket_statuses')->pluck('status_name', 'status_id');
         $ticket_priorities = DB::table('ticket_priorities')->pluck('priority_name', 'priority_id');
 
-        return view('tickets.create')->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities)->with('users', $users);
+        return view('tickets.create')->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities);
     }
 
     /**
@@ -89,12 +88,12 @@ class TicketsController extends Controller
     public function edit($id)
     {
         $ticket = Ticket::find($id);
+        $projectDevelopers = DB::table('users')->where('role_id', '=', '3')->pluck('name', 'id');
         $ticket_types = DB::table('ticket_types')->pluck('type_name', 'type_id');
         $ticket_statuses = DB::table('ticket_statuses')->pluck('status_name', 'status_id');
         $ticket_priorities = DB::table('ticket_priorities')->pluck('priority_name', 'priority_id');
-        $users = DB::table('users')->pluck('name', 'id');
         $assignedDevelopers = DB::table('assigned_developers')->where('ticket_id', '=', $id)->pluck('id');
-        return view('tickets.edit')->with('ticket', $ticket)->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities)->with('users', $users)->with('assignedDevelopers', $assignedDevelopers);
+        return view('tickets.edit')->with('projectDevelopers', $projectDevelopers)->with('ticket', $ticket)->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities)->with('assignedDevelopers', $assignedDevelopers);
     }
 
     /**

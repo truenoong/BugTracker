@@ -17,13 +17,13 @@
         <div class="form-group col-md-6">
             <div class="form-group">
                 {{Form::label('project_managers', 'Project Managers')}}
-                {{Form::select('project_managers', $users, null, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'project_managers[]'])}}
+                {{Form::select('project_managers', $projectManagers, null, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'project_managers[]'])}}
             </div>
         </div>
         <div class="form-group col-md-6">
             <div class="form-group">
                 {{Form::label('project_developers', 'Project Developers')}}
-                {{Form::select('project_developers', $users, null, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'project_developers[]'])}}
+                {{Form::select('project_developers', $projectDevelopers, null, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'project_developers[]'])}}
             </div>
         </div>
     </div>

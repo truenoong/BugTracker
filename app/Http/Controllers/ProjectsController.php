@@ -28,8 +28,9 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        $users = DB::table('users')->pluck('name', 'id');
-        return view('projects.create')->with('users', $users);
+        $projectManagers = DB::table('users')->where('role_id', '=', '2')->pluck('name', 'id');
+        $projectDevelopers = DB::table('users')->where('role_id', '=', '3')->pluck('name', 'id');
+        return view('projects.create')->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers);
     }
 
     /**
@@ -90,10 +91,11 @@ class ProjectsController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        $users = DB::table('users')->pluck('name', 'id');
-        $projectManagers = DB::table('project_managers')->where('project_id', '=', $id)->pluck('id');
-        $projectDevelopers = DB::table('project_developers')->where('project_id', '=', $id)->pluck('id');
-        return view('projects.edit')->with('project', $project)->with('users', $users)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers);
+        $projectManagers = DB::table('users')->where('role_id', '=', '2')->pluck('name', 'id');
+        $projectDevelopers = DB::table('users')->where('role_id', '=', '3')->pluck('name', 'id');
+        $selectedProjectManagers = DB::table('project_managers')->where('project_id', '=', $id)->pluck('id');
+        $selectedProjectDevelopers = DB::table('project_developers')->where('project_id', '=', $id)->pluck('id');
+        return view('projects.edit')->with('project', $project)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers)->with('selectedProjectManagers', $selectedProjectManagers)->with('selectedProjectDevelopers', $selectedProjectDevelopers);
     }
 
     /**

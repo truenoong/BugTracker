@@ -18,13 +18,13 @@
         <div class="form-group col-md-6">
             <div class="form-group">
                 {{Form::label('project_managers', 'Project Managers')}}
-                {{Form::select('project_managers', $users, $projectManagers, ['class' => 'form-control selectpicker multiple-height', 'multiple', 'name' => 'project_managers[]'])}}
+                {{Form::select('project_managers', $projectManagers, $selectedProjectManagers, ['class' => 'form-control selectpicker multiple-height', 'multiple', 'name' => 'project_managers[]'])}}
             </div>
         </div>
         <div class="form-group col-md-6">
             <div class="form-group">
                 {{Form::label('project_developers', 'Project Developers')}}
-                {{Form::select('project_developers', $users, $projectDevelopers, ['class' => 'form-control selectpicker multiple-height', 'multiple', 'name' => 'project_developers[]'])}}
+                {{Form::select('project_developers', $projectDevelopers, $selectedProjectDevelopers, ['class' => 'form-control selectpicker multiple-height', 'multiple', 'name' => 'project_developers[]'])}}
             </div>
         </div>
     </div>
