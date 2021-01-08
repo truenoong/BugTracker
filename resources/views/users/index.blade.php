@@ -3,14 +3,14 @@
 @section('content')
 <div class="content">
     <h1 class="align-left">{{$title ?? 'Users'}}</h1>
-    <a href="/users/create"><button type="button" class="btn btn-primary action-buttons align-right">Create a
-            user</button></a>
+    <a href="/users/create"><button type="button" class="btn btn-primary action-buttons align-right">Create a user</button></a>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Userame</th>
                 <th scope="col">Email</th>
+                <th scope="col">Role</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -22,14 +22,11 @@
                 <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{$user->created_at}}</td>
+                <td>{{$user->role['role_name']}}</td>
+                <td>{{$user->created_at->format('d/m/Y')}}</td>
                 <td>
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-row">
-                            <div class="p-2">
-                                <a href="/users/{{$user->id}}"><button type="button"
-                                        class="btn btn-primary action-buttons table-buttons">View More</button></a>
-                            </div>
                             <div class="p-2">
                                 <a href="/users/{{$user->id}}/edit"><button type="button"
                                         class="btn btn-primary action-buttons table-buttons">Edit</button></a>

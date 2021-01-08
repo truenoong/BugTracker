@@ -4,8 +4,7 @@
 <div class="content">
     <h1>Create Ticket</h1>
 
-    {!! Form::open(['action' => ['App\Http\Controllers\TicketsController@update', $ticket->ticket_id], 'method' =>
-    'POST']) !!}
+    {!! Form::open(['action' => ['App\Http\Controllers\TicketsController@update', $ticket->ticket_id], 'method' => 'POST']) !!}
     <div class="form-group">
         {{Form::label('name', 'Name')}}
         {{Form::text('name', $ticket->ticket_name, ['class' => 'form-control', 'placeholder' => 'Ticket Name'])}}
