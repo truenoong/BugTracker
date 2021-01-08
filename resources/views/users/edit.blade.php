@@ -7,16 +7,16 @@
     {!! Form::open(['action' => ['App\Http\Controllers\UsersController@update', $users->id], 'method' => 'POST']) !!}
     <div class="form-group">
         {{Form::label('name', 'Name')}}
-        {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Userame'])}}
+        {{Form::text('name', $users->name, ['class' => 'form-control', 'placeholder' => 'Userame'])}}
     </div>
     <div class="form-group">
         {{Form::label('email', 'Email')}}
-        {{Form::text('email', '', ['class' => 'form-control', 'placeholder' => 'Email'])}}
+        {{Form::text('email', $users->email, ['class' => 'form-control', 'placeholder' => 'Email'])}}
     </div>
     <div class="form-group">
         <div class="form-group">
             {{Form::label('role', 'Role')}}
-            {{Form::select('role', $roles, null, ['class' => 'form-control'])}}
+            {{Form::select('role', $roles, $selectedRole, ['class' => 'form-control'])}}
         </div>
     </div>
     {{Form::hidden('_method', 'PUT')}}

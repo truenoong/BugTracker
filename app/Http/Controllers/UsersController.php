@@ -75,7 +75,8 @@ class UsersController extends Controller
     {
         $users = User::find($id);
         $roles = DB::table('roles')->pluck('role_name', 'role_id');
-        return view('users.edit')->with('users', $users)->with('roles', $roles);
+        $selectedRole = User::where('id', '=', $id)->pluck('role_id');
+        return view('users.edit')->with('users', $users)->with('roles', $roles)->with('selectedRole', $selectedRole);
     }
 
     /**
