@@ -29,7 +29,7 @@
         </div>
         <div class="form-group col-md-6">
             {!! Form::Label('due_date', 'Due date:') !!}
-            {!! Form::input('text', 'due_date', $ticket->due_date->format('d/m/Y'), ['class' => 'form-control date', 'placeholder' => $ticket->due_date->format('d/m/Y'), 'onfocus' => '(this.type="date")', 'onblur' => '(this.type="text")']) !!}
+            {!! Form::input('text', 'due_date', $ticket->due_date->format('d/m/Y'), ['class' => 'form-control date', 'placeholder' => $ticket->due_date->format('d/m/Y'), 'onfocus' => '(this.type="date")', 'onblur' => '(this.type="text") changeFormat()']) !!}
         </div>
         <div class="form-group col-md-12">
             {{Form::label('assigned_developers', 'Assign to:')}}
@@ -41,12 +41,15 @@
     {!! Form::close() !!}
 </div>
 
-<script type="text/javascript">
-    $('.date').datepicker(
-            format: 'dd/mm/yyyy'
-        );
-
-        var dt = new Date();
-document.getElementByClass("date").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());
-</script>
+<script>
+var changeFormat = function (date) {
+    
+    var d = document.getElementByClass('date').value;
+    
+    d = d.split("/");
+    d.reverse();
+    
+    document.getElementById('formattedDate').innerHTML = d[0]+'/'+d[1]+'/'+d[2];
+}
+    </script>
 @endsection

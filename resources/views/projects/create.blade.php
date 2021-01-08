@@ -27,6 +27,12 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            {!! Form::Label('due_date', 'Due date:') !!}
+            {!! Form::input('date', 'due_date', '', ['class' => 'form-control date']) !!}
+        </div>
+    </div>
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}
 </div>
