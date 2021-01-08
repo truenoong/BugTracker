@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Models\Project;
 use App\Models\ProjectManager;
 use App\Models\ProjectDeveloper;
@@ -49,6 +50,7 @@ class ProjectsController extends Controller
         $project = new Project;
         $project->project_name = $request->input("name");
         $project->project_desc = $request->input("description");
+        $project->due_date = Carbon::parse($request->input('due_date'));
         $project->save();
 
         foreach($request->project_managers as $project_manager) {
@@ -115,6 +117,7 @@ class ProjectsController extends Controller
         $project = Project::find($id);
         $project->project_name = $request->input("name");
         $project->project_desc = $request->input("description");
+        $project->due_date = Carbon::parse($request->input('due_date'));
         $project->save();
 
         $projectManager = ProjectManager::where('project_id', '=', $id);

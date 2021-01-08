@@ -41,14 +41,11 @@
 </div>
 
 <script>
-var changeFormat = function (date) {
-    
-    var d = document.getElementByClass('date').value;
-    
-    d = d.split("/");
-    d.reverse();
-    
-    document.getElementById('formattedDate').innerHTML = d[0]+'/'+d[1]+'/'+d[2];
-}
-    </script>
+    var changeFormat = function (date) {
+        var d = document.getElementByClass('date').value;
+        d = d.split("/");
+        d.reverse();
+        document.getElementByClass('date').innerHTML = d[0]+'/'+d[1]+'/'+d[2];
+    }
+</script>
 @endsection

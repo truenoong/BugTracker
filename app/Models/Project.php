@@ -10,6 +10,7 @@ class Project extends Model
     use HasFactory;
     public $primaryKey = 'project_id';
     public $timestamps = true;
+    protected $dates = ['due_date'];
 
     public function projectManager() {
         return $this->belongsTo('App\Models\ProjectManager', 'project_id', 'project_id');
