@@ -10,7 +10,6 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Description</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -21,7 +20,6 @@
             <tr>
                 <td>{{$project->project_id}}</td>
                 <td>{{$project->project_name}}</td>
-                <td>{{$project->project_desc}}</td>
                 <td>{{$project->created_at->format('m/d/Y')}}</td>
                 <td>
                     <div class="d-flex flex-column">

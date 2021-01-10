@@ -32,3 +32,9 @@ Route::resource('tickets', 'App\Http\Controllers\TicketsController');
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+
+Route::get('forget-password', 'App\Http\Controllers\Auth\ForgotPasswordController@getEmail')->name('forget-password');
+Route::post('forget-password', 'App\Http\Controllers\Auth\ForgotPasswordController@postEmail')->name('forget-password');
+
+Route::get('password/reset/{token}', 'App\Http\Controllers\Auth\ResetPasswordController@getPassword')->name('password.reset');
+Route::post('reset-password', 'App\Http\Controllers\Auth\ResetPasswordController@updatePassword');

@@ -10,6 +10,7 @@
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Name</th>
+				<th scope="col">Submitter</th>
 				<th scope="col">Type</th>
 				<th scope="col">Status</th>
 				<th scope="col">Priority</th>
@@ -21,9 +22,10 @@
 		<tbody id="tbody">
 			@if(count($tickets) > 0)
 			@foreach($tickets as $ticket)
-			<tr>
+			<a href="/tickets/{{$ticket->ticket_id}}"><tr>
 				<td>{{$ticket->ticket_id}}</td>
 				<td>{{$ticket->ticket_name}}</td>
+				<td>{{$ticket->submitter['name']}}</td>
 				<td>{{$ticket->ticketType['type_name']}}</td>
 				<td>{{$ticket->ticketStatus['status_name']}}</td>
 				<td>{{$ticket->ticketPriority['priority_name']}}</td>
@@ -43,7 +45,7 @@
 						</div>
 					</div>
 				</td>
-			</tr>
+			</tr></a>
 			@endforeach
 			@else
 			<p style="text-align-center">No Ticket found</p>

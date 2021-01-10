@@ -11,6 +11,10 @@ class Ticket extends Model
     public $primaryKey = 'ticket_id';
     protected $dates = ['due_date'];
 
+    public function submitter() {
+        return $this->belongsTo('App\Models\User', 'id', 'id');
+    }
+
     public function ticketType() {
         return $this->belongsTo('App\Models\TicketType', 'type_id', 'type_id');
     }

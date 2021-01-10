@@ -11,6 +11,10 @@
     <div>
         {!!$ticket->ticket_desc!!}
     </div>
+    <h3>Submitter</h3>
+    <div>
+        {!!$ticket->submitter['name']!!}
+    </div>
     <br />
     <div class="row">
         <div class="form-group col-md-4">

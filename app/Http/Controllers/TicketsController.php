@@ -15,6 +15,16 @@ use App\Models\AssignedDeveloper;
 class TicketsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -60,6 +70,7 @@ class TicketsController extends Controller
         $ticket->status_id = $request->input('ticket_statuses');
         $ticket->priority_id = $request->input('ticket_priorities');
         $ticket->due_date = Carbon::parse($request->input('due_date'));
+        $ticket->id = auth()->user()->id;
         $ticket->save();
 
         return redirect('/tickets')->with('success', 'Successfully Created a New Ticket');
