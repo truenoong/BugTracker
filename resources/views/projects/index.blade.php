@@ -22,7 +22,7 @@
                 <td>{{$project->project_id}}</td>
                 <td>{{$project->project_name}}</td>
                 <td>{{$project->project_desc}}</td>
-                <td>{{$project->created_at}}</td>
+                <td>{{$project->created_at->format('m/d/Y')}}</td>
                 <td>
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-row">

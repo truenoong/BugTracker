@@ -27,8 +27,8 @@
 				<td>{{$ticket->ticketType['type_name']}}</td>
 				<td>{{$ticket->ticketStatus['status_name']}}</td>
 				<td>{{$ticket->ticketPriority['priority_name']}}</td>
-				<td>{{$ticket->created_at->format('d/m/Y')}}</td>
-				<td>{{$ticket->due_date->format('d/m/Y')}}</td>
+				<td>{{$ticket->created_at->format('m/d/Y')}}</td>
+				<td>{{$ticket->due_date->format('m/d/Y')}}</td>
 				<td>
 					<div class="d-flex flex-column">
 						<div class="d-flex flex-row">

@@ -23,7 +23,7 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role['role_name']}}</td>
-                <td>{{$user->created_at->format('d/m/Y')}}</td>
+                <td>{{$user->created_at->format('m/d/Y')}}</td>
                 <td>
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-row">

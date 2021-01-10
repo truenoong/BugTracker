@@ -31,7 +31,7 @@
     <div class="row">
         <div class="form-group col-md-3">
             {!! Form::Label('due_date', 'Due date:') !!}
-            {!! Form::input('text', 'due_date', $project->due_date->format('d/m/Y'), ['class' => 'form-control date', 'placeholder' => $project->due_date, 'onfocus' => '(this.type="date")', 'onblur' => '(this.type="text") changeFormat()']) !!}
+            {!! Form::input('text', 'due_date', $project->due_date->format('m/d/Y'), ['class' => 'form-control date', 'id' => 'date', 'placeholder' => $project->due_date->format('m/d/Y'), 'onfocus' => '(this.type="date")']) !!}
         </div>
     </div>
     {{Form::hidden('_method', 'PUT')}}
@@ -39,12 +39,5 @@
     {!! Form::close() !!}
 </div>
 
-{{-- <script>
-    var changeFormat = function (date) {
-        var d = document.getElementByClass('date').value;
-        d = d.split("/");
-        d.reverse();
-        document.getElementByClass('date').innerHTML = d[0]+'/'+d[1]+'/'+d[2];
-    }
-</script> --}}
+
 @endsection
