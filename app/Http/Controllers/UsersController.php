@@ -41,6 +41,7 @@ class UsersController extends Controller
     public function create()
     {
         $users = DB::table('users')->pluck('name', 'id');
+        $password = $hashed_random_password = Hash::make(str_random(8));
         $roles = DB::table('roles')->pluck('role_name', 'role_id');
         return view('users.create')->with('users', $users)->with('roles', $roles);
     }

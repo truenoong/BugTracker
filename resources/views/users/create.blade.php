@@ -14,10 +14,6 @@
         {{Form::text('email', '', ['class' => 'form-control', 'placeholder' => 'Email'])}}
     </div>
     <div class="form-group">
-        {{Form::label('password', 'Password')}}
-        {{Form::text('password', '', ['class' => 'form-control', 'placeholder' => 'Password'])}}
-    </div>
-    <div class="form-group">
         <div class="form-group">
             {{Form::label('role', 'Role')}}
             {{Form::select('role', $roles, null, ['class' => 'form-control'])}}

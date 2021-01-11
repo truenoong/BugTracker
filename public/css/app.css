@@ -10954,12 +10954,17 @@ a.text-dark:focus {
   }
 }
 
+.alert {
+  z-index: 998;
+}
+
 .horizontal-navbar {
   height: 50px;
   position: fixed;
   width: 100%;
   padding-left: 75px;
   background-color: #0366ff !important;
+  z-index: 997;
 }
 
 .nav-icon {
@@ -11012,7 +11017,7 @@ a.text-dark:focus {
 }
 
 .container {
-  min-height: 100vh;
+  overflow: hidden;
   padding: 10px 0px;
 }
 
