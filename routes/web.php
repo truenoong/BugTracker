@@ -17,14 +17,10 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [PagesController::class, 'login']);
 Route::get('/register', [PagesController::class, 'register']);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [PagesController::class, 'dashboard']);
 Route::get('/users', [PagesController::class, 'user']);
 Route::get('/projects', [PagesController::class, 'project']);
 Route::get('/tickets', [PagesController::class, 'ticket']);
 Route::get('/profile', [PagesController::class, 'profile']);
-
 Route::resource('dashboard', 'App\Http\Controllers\DashboardController');
 Route::resource('users', 'App\Http\Controllers\UsersController');
 Route::resource('projects', 'App\Http\Controllers\ProjectsController');
@@ -32,7 +28,7 @@ Route::resource('tickets', 'App\Http\Controllers\TicketsController');
 
 Auth::routes();
 
-Route::get('/', [PagesController::class, 'dashboard']);
+Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
 
 Route::get('forget-password', 'App\Http\Controllers\Auth\ForgotPasswordController@getEmail')->name('forget-password');
 Route::post('forget-password', 'App\Http\Controllers\Auth\ForgotPasswordController@postEmail')->name('forget-password');

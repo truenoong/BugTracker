@@ -2,4 +2,5 @@
 
 @section('content')
     <h1>{{$title ?? 'Dashboard'}}</h1>
+    <p>hey</p>
 @endsection

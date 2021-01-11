@@ -6,7 +6,7 @@
         </ul>
         <ul class="rightNavbar navbar-nav ml-auto">
             <li id="dashboard" class="nav-item">
-                <a href="/" id="login" class="icon-search icon-nav nav-link text-dark nav-text horizontal-nav-text">Login</a>
+                <a href="/login" id="login" class="icon-search icon-nav nav-link text-dark nav-text horizontal-nav-text">Login</a>
             </li>   
             <li id="dashboard" class="nav-item">
                 <a href="/register" id="register" class="icon-profile icon-nav nav-link text-dark nav-text horizontal-nav-text">Register</a>
