@@ -67,7 +67,20 @@ class LoginController extends Controller
                 'password.required' => 'Password is required',
             ]
         );
+
+        $remember_me = $request->has('remember') ? true : false;
+
+        if (auth()->attempt(['name' => $request->input('identity'), 'password' => $request->input('password')] , $remember_me)) {
+            $user = auth()->user();
+            // fill in username and pw
+        } else if (auth()->attempt(['email' => $request->input('identity'), 'password' => $request->input('password')] , $remember_me)) {
+            $user = auth()->user();
+            // fill in username and pw
+        } else {
+            return back()->with('error','your username and password are wrong.');
+        }
     }
+
     /**
      * @param Request $request
      * @throws ValidationException

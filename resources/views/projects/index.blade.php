@@ -2,10 +2,17 @@
 
 @section('content')
 <div class="content">
-    <h1 class="align-left">{{$title ?? 'Projects'}}</h1>
-    <a href="/projects/create"><button type="button" class="btn btn-primary action-buttons align-right">Create a
-            project</button></a>
-    <table class="table">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="align-left">List of projects</h2>
+        </div>
+        <div class="col-md-6">
+            <a href="/projects/create"><button type="button" class="btn btn-primary action-buttons align-right">Create a
+                    project</button></a>
+        </div>
+    </div>
+    <br />
+    <table class="table" id="datatable">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -43,4 +50,11 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function() {
+		$('#datatable').DataTable();
+	});
+</script>
+
 @endsection

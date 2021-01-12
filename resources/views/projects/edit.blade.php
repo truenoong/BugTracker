@@ -39,5 +39,12 @@
     {!! Form::close() !!}
 </div>
 
+<script>
+    $(document).ready(function() {
+        $('.date').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+    });
+</script>
 
 @endsection

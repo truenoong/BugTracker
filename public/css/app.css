@@ -11079,3 +11079,19 @@ a.text-dark:focus {
   line-height: 0.65;
 }
 
+.dataTables_wrapper .dataTables_filter input {
+  border-width: thin !important;
+}
+
+table.dataTable tbody tr {
+  background-color: transparent !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #333333 !important;
+  border: 1px solid #cacaca;
+  background-color: white;
+  background: transparent !important;
+}
+

@@ -90,7 +90,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
         <title>{{config('app.name', 'BugTracker')}}</title>
     </head>
     <body>
