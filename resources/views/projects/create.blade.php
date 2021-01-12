@@ -36,4 +36,13 @@
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.date').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+    });
+</script>
+
 @endsection

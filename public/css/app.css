@@ -11090,8 +11090,8 @@ table.dataTable tbody tr {
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   color: #333333 !important;
-  border: 1px solid #cacaca;
-  background-color: white;
-  background: transparent !important;
+  border: 1px solid #cacaca !important;
+  background-color: white !important;
+  background: white !important;
 }
 
