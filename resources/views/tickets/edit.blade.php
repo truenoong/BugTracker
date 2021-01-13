@@ -28,7 +28,7 @@
         </div>
         <div class="form-group col-md-6">
             {!! Form::Label('due_date', 'Due date:') !!}
-            {!! Form::input('text', 'due_date', $ticket->due_date->format('d/m/Y'), ['class' => 'form-control date', 'placeholder' => $ticket->due_date->format('d/m/Y'), 'onfocus' => '(this.type="date")', 'onblur' => '(this.type="text") changeFormat()']) !!}
+            {!! Form::input('text', 'due_date', $ticket->due_date->format('d/m/Y'), ['class' => 'form-control date', 'placeholder' => $ticket->due_date->format('d/m/Y'), 'onfocus' => '(this.type="date")']) !!}
         </div>
         <div class="form-group col-md-12">
             {{Form::label('assigned_developers', 'Assign to:')}}
@@ -41,11 +41,12 @@
 </div>
 
 <script>
-    var changeFormat = function (date) {
-        var d = document.getElementByClass('date').value;
-        d = d.split("/");
-        d.reverse();
-        document.getElementByClass('date').innerHTML = d[0]+'/'+d[1]+'/'+d[2];
-    }
+	$(document).ready(function() {
+		$('.date').datepicker({
+            format: 'dd/mm/yyyy',
+            startDate: '-3d'
+        });
+	});
 </script>
+
 @endsection
