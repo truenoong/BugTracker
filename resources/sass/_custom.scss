@@ -51,7 +51,7 @@
 }
 
 .horizontal-navbar {
-    height: 50px;
+    height: 40px;
     position: fixed;
     width: 100%;
     padding-left: 75px;
@@ -104,8 +104,8 @@
 }
 
 .content {
-    margin-top: 55px;
-    margin-left: 65px;
+    margin-top: 45px;
+    margin-left: 60px;
 }
 
 .container {
@@ -184,4 +184,38 @@ table.dataTable tbody tr {
     border: 1px solid #cacaca !important;
     background-color: white !important;
     background: white !important;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    height: 25px;
+    padding: 1px !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    height: 25px;
+}
+
+table.dataTable.no-footer {
+    border-bottom: 0px !important;
+}
+
+table.dataTable thead th{
+    border-bottom: 1px solid #a9a9a9 !important;
+}
+
+.tableText {
+    font-size: 14px !important;
+}
+
+.table th{
+    border-top: 0px !important;
+}
+
+.btn {
+    padding: 0.3.25rem !important;
+    font-size: 14px !important;
+}
+
+.projectActions {
+    width: 325px;
 }

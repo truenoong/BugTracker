@@ -92,9 +92,9 @@
         <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css">  
-        <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
         <title>{{config('app.name', 'BugTracker')}}</title>
     </head>
     <body>

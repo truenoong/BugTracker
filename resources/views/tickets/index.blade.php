@@ -4,7 +4,7 @@
 <div class="content">
 	<div class="row">
 		<div class="col-md-6">
-			<h2 class="align-left">List of tickets</h2>
+			<h3 class="align-left">List of tickets</h3>
 		</div>
 		<div class="col-md-6">
 			<a href="/tickets/create"><button type="button" class="btn btn-primary action-buttons align-right">Create a
@@ -12,18 +12,18 @@
 		</div>
 	</div>
 	<br />
-	<table class="table" id="datatable">
+	<table class="table tableText" id="datatable">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col">Name</th>
-				<th scope="col">Submitter</th>
-				<th scope="col">Type</th>
-				<th scope="col">Status</th>
-				<th scope="col">Priority</th>
-				<th scope="col">Created at</th>
-				<th scope="col">Due Date</th>
-				<th scope="col">Actions</th>
+				<th scope="col">NAME</th>
+				<th scope="col">SUBMITTER</th>
+				<th scope="col">TYPE</th>
+				<th scope="col">STATUS</th>
+				<th scope="col">PRIORITY</th>
+				<th scope="col">CREATED</th>
+				<th scope="col">DUE DATE</th>
+				<th scope="col">ACTIONS</th>
 			</tr>
 		</thead>
 		<tbody id="tbody">

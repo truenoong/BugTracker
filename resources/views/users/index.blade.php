@@ -4,7 +4,7 @@
 <div class="content">
     <div class="row">
         <div class="col-md-6">
-            <h2 class="align-left">List of users</h2>
+            <h3 class="align-left">List of users</h3>
         </div>
         <div class="col-md-6">
             <a href="/users/create"><button type="button" class="btn btn-primary action-buttons align-right">Create new
@@ -12,15 +12,15 @@
         </div>
     </div>
     <br />
-    <table class="table" id="datatable">
+    <table class="table tableText" id="datatable">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Userame</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
-                <th scope="col">Created at</th>
-                <th scope="col">Actions</th>
+                <th scope="col">USERNAME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">ROLE</th>
+                <th scope="col">CREATED</th>
+                <th scope="col">ACTIONS</th>
             </tr>
         </thead>
         <tbody id="tbody">
@@ -49,12 +49,14 @@
             @endif
         </tbody>
     </table>
+
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        });
+    </script>
 </div>
 
-<script>
-    $(document).ready(function() {
-		$('#datatable').DataTable();
-	});
-</script>
+
 
 @endsection
