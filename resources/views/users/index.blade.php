@@ -36,6 +36,10 @@
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-row">
                             <div class="p-2">
+                                <a href="/users/{{$user->id}}"><button type="button"
+                                        class="btn btn-primary action-buttons table-buttons">View more</button></a>
+                            </div>
+                            <div class="p-2">
                                 <a href="/users/{{$user->id}}/edit"><button type="button"
                                         class="btn btn-primary action-buttons table-buttons">Edit</button></a>
                             </div>

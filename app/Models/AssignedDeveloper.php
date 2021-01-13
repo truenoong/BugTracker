@@ -15,4 +15,8 @@ class AssignedDeveloper extends Model
     public function assignedDeveloper() {
         return $this->belongsTo('App\Models\User', 'id', 'id');
     }
+
+    public function ticket() {
+        return $this->belongsTo('App\Models\Ticket', 'id', 'id');
+    }
 }

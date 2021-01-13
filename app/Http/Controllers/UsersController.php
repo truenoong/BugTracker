@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Ticket;
 use App\Models\AssignedDeveloper;
 use App\Models\ProjectManager;
 use App\Models\ProjectDeveloper;
@@ -72,8 +73,12 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('users.show')->with('user', $user);
+        $users = User::find($id);
+        $projectManagers = ProjectManager::where('id', '=', $id)->get();
+        $projectDevelopers = ProjectDeveloper::where('id', '=', $id)->get();
+        $assignedDevelopers = AssignedDeveloper::where('id', '=', $id)->get();
+        $submittedTickets = Ticket::where('id', '=', $id)->get();
+        return view('users.show')->with('users', $users)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers)->with('assignedDevelopers', $assignedDevelopers)->with('submittedTickets', $submittedTickets);
     }
 
     /**

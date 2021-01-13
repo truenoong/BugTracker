@@ -211,6 +211,10 @@ table.dataTable thead th{
     border-top: 0px !important;
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: .1em .65em !important;
+}
+
 .btn {
     padding: 0.3.25rem !important;
     font-size: 14px !important;

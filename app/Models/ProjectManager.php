@@ -15,4 +15,8 @@ class ProjectManager extends Model
     public function projectManager() {
         return $this->belongsTo('App\Models\User', 'id', 'id');
     }
+
+    public function project() {
+        return $this->belongsTo('App\Models\Project', 'project_id', 'project_id');
+    }
 }

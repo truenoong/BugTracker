@@ -15,4 +15,8 @@ class ProjectDeveloper extends Model
     public function projectDeveloper() {
         return $this->belongsTo('App\Models\User', 'id', 'id');
     }
+
+    public function project() {
+        return $this->belongsTo('App\Models\Project', 'project_id', 'project_id');
+    }
 }
