@@ -11,6 +11,7 @@ use App\Models\TicketStatus;
 use App\Models\TicketPriority;
 use App\Models\User;
 use App\Models\AssignedDeveloper;
+use App\Models\AuditTrail;
 
 class TicketsController extends Controller
 {
@@ -58,6 +59,14 @@ class TicketsController extends Controller
      */
     public function store(Request $request)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Created ticket',
+            'action_name' => $request->input("name"),
+            'id' => $login_user_id,
+        ]);
+
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required'
@@ -98,6 +107,14 @@ class TicketsController extends Controller
      */
     public function edit($id)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Updated ticket details',
+            'action_name' => $request->input("name"),
+            'id' => $login_user_id,
+        ]);
+
         $ticket = Ticket::find($id);
         $projectDevelopers = DB::table('users')->where('role_id', '=', '3')->pluck('name', 'id');
         $ticket_types = DB::table('ticket_types')->pluck('type_name', 'type_id');
@@ -151,6 +168,14 @@ class TicketsController extends Controller
      */
     public function destroy($id)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Deleted ticket',
+            'action_name' => 'Deleted',
+            'id' => $login_user_id,
+        ]);
+
         $ticket = Ticket::find($id);
         $assignedDeveloper = AssignedDeveloper::where('ticket_id', '=', $id);
         $assignedDeveloper->delete();

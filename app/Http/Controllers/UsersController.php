@@ -10,6 +10,7 @@ use App\Models\Ticket;
 use App\Models\AssignedDeveloper;
 use App\Models\ProjectManager;
 use App\Models\ProjectDeveloper;
+use App\Models\AuditTrail;
 
 class UsersController extends Controller
 {
@@ -55,6 +56,14 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Created user',
+            'action_name' => $request->input("name"),
+            'id' => $login_user_id,
+        ]);
+
         $user = new User;
         $user->name = $request->input("name");
         $user->email = $request->input("email");
@@ -104,6 +113,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Updated user details',
+            'action_name' => $request->input("name"),
+            'id' => $login_user_id,
+        ]);
+
         $user = User::find($id);
         $user->name = $request->input("name");
         $user->email = $request->input("email");
@@ -121,6 +138,14 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Deleted user',
+            'action_name' => 'Deleted',
+            'id' => $login_user_id,
+        ]);
+        
         $user = User::find($id);
         $assignedDeveloper = AssignedDeveloper::where('id', '=', $id);
         $assignedDeveloper->delete();

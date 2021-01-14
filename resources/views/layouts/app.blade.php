@@ -95,6 +95,10 @@
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"/>
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
+        <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
+        <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
+        <script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
         <title>{{config('app.name', 'BugTracker')}}</title>
     </head>
     <body>

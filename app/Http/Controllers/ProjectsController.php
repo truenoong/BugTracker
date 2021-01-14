@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Project;
 use App\Models\ProjectManager;
 use App\Models\ProjectDeveloper;
+use App\Models\AuditTrail;
 
 class ProjectsController extends Controller
 {
@@ -52,6 +53,14 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Created Project',
+            'action_name' => $request->input("name"),
+            'id' => $login_user_id,
+        ]);
+
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required'
@@ -119,6 +128,14 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Updated project details',
+            'action_name' => $request->input("name"),
+            'id' => $login_user_id,
+        ]);
+
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required'
@@ -160,6 +177,14 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Deleted project',
+            'action_name' => 'Deleted',
+            'id' => $login_user_id,
+        ]);
+
         $project = Project::find($id);
         $projectManager = ProjectManager::where('project_id', '=', $id);
         $projectManager->delete();

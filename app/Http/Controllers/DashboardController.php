@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AuditTrail;
 
 class DashboardController extends Controller
 {
@@ -23,6 +24,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $auditTrails = AuditTrail::orderBy('created_at', 'DESC')->get();
+        return view('dashboard')->with('auditTrails', $auditTrails);
     }
 }
