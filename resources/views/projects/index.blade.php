@@ -45,7 +45,6 @@
             </tr>
             @endforeach
             @else
-            <p style="text-align-center">No Project found</p>
             @endif
         </tbody>
     </table>

@@ -37,6 +37,10 @@
         </div>
     </div>
     <br/>
+    <h3>Project</h3>
+    <div>
+        {{$ticket->ticketProject['project_name']}}
+    </div>
     <h3>Assigned developer</h3>
     @foreach($assignedDevelopers as $assignedDeveloper)
     <div>

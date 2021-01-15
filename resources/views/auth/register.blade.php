@@ -45,6 +45,16 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <select class="form-control" id="role_id" name="role_id">
+                                    <option value="1">admin</option>
+                                    <option value="2">project manager</option>
+                                    <option value="3">developer</option>
+                                    <option value="4">submitter</option>
+                                </select>
+                            </div>
+                        </div>
                         
                         <div class="form-group row mb-0">
                             <div class="col-md-12 offset-md-5">

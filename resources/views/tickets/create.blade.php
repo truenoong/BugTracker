@@ -6,6 +6,10 @@
 
     {!! Form::open(['action' => 'App\Http\Controllers\TicketsController@store', 'method' => 'POST']) !!}
     <div class="form-group">
+        {!! Form::Label('project', 'Project:') !!}
+        {!! Form::select('project', $ticket_projects, null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
         {{Form::label('name', 'Name')}}
         {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Ticket Name'])}}
     </div>

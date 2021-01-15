@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="content">
-    <h1>{{$title ?? 'Dashboard'}}</h1>
+    <h3>{{$title ?? 'Dashboard'}}</h3>
+    <br/>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -75,6 +76,7 @@
           url: "@chart('status_chart')",
           hooks: new ChartisanHooks()
           .colors()
+          .borderColors()
         });
 </script>
 @endsection

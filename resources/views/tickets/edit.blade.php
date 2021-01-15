@@ -6,6 +6,10 @@
 
     {!! Form::open(['action' => ['App\Http\Controllers\TicketsController@update', $ticket->ticket_id], 'method' => 'POST']) !!}
     <div class="form-group">
+        {!! Form::Label('project', 'Project:') !!}
+        {!! Form::select('project', $ticket_projects, $ticket->project_id, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
         {{Form::label('name', 'Name')}}
         {{Form::text('name', $ticket->ticket_name, ['class' => 'form-control', 'placeholder' => 'Ticket Name'])}}
     </div>
@@ -28,11 +32,11 @@
         </div>
         <div class="form-group col-md-6">
             {!! Form::Label('due_date', 'Due date:') !!}
-            {!! Form::input('text', 'due_date', $ticket->due_date->format('d/m/Y'), ['class' => 'form-control date', 'placeholder' => $ticket->due_date->format('d/m/Y'), 'onfocus' => '(this.type="date")']) !!}
+            {!! Form::input('text', 'due_date', $ticket->due_date->format('m/d/Y'), ['class' => 'form-control date', 'placeholder' => $ticket->due_date->format('m/d/Y'), 'onfocus' => '(this.type="date")']) !!}
         </div>
         <div class="form-group col-md-12">
             {{Form::label('assigned_developers', 'Assign to:')}}
-            {{Form::select('assigned_developers', $projectDevelopers, $assignedDevelopers, ['class' => 'form-control selectpicker', 'multiple', 'name' => 'assigned_developers[]'])}}
+            {{Form::select('assigned_developers', $projectDevelopers, $assignedDevelopers, ['class' => 'form-control selectpicker multiple-height', 'multiple', 'name' => 'assigned_developers[]'])}}
         </div>
     </div>
     {{Form::hidden('_method', 'PUT')}}

@@ -26,4 +26,8 @@ class Ticket extends Model
     public function ticketPriority() {
         return $this->belongsTo('App\Models\TicketPriority', 'priority_id', 'priority_id');
     }
+
+    public function ticketProject() {
+        return $this->belongsTo('App\Models\Project', 'project_id', 'project_id');
+    }
 }

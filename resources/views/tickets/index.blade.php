@@ -57,7 +57,6 @@
 			</a>
 			@endforeach
 			@else
-			<p style="text-align-center">No Ticket found</p>
 			@endif
 		</tbody>
 	</table>

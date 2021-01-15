@@ -44,11 +44,12 @@ class TicketsController extends Controller
      */
     public function create()
     {
+        $ticket_projects= DB::table('projects')->pluck('project_name', 'project_id');
         $ticket_types = DB::table('ticket_types')->pluck('type_name', 'type_id');
         $ticket_statuses = DB::table('ticket_statuses')->pluck('status_name', 'status_id');
         $ticket_priorities = DB::table('ticket_priorities')->pluck('priority_name', 'priority_id');
 
-        return view('tickets.create')->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities);
+        return view('tickets.create')->with('ticket_projects', $ticket_projects)->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities);
     }
 
     /**
@@ -73,6 +74,7 @@ class TicketsController extends Controller
         ]);
 
         $ticket = new Ticket;
+        $ticket->project_id = $request->input('project');
         $ticket->ticket_name = $request->input("name");
         $ticket->ticket_desc = $request->input("description");
         $ticket->type_id = $request->input('ticket_types');
@@ -107,21 +109,14 @@ class TicketsController extends Controller
      */
     public function edit($id)
     {
-        $login_user_id = auth()->user()->id;
-
-        $auditTrail = AuditTrail::create([
-            'action' => 'Updated ticket details',
-            'action_name' => $request->input("name"),
-            'id' => $login_user_id,
-        ]);
-
         $ticket = Ticket::find($id);
+        $ticket_projects= DB::table('projects')->pluck('project_name', 'project_id');
         $projectDevelopers = DB::table('users')->where('role_id', '=', '3')->pluck('name', 'id');
         $ticket_types = DB::table('ticket_types')->pluck('type_name', 'type_id');
         $ticket_statuses = DB::table('ticket_statuses')->pluck('status_name', 'status_id');
         $ticket_priorities = DB::table('ticket_priorities')->pluck('priority_name', 'priority_id');
         $assignedDevelopers = DB::table('assigned_developers')->where('ticket_id', '=', $id)->pluck('id');
-        return view('tickets.edit')->with('projectDevelopers', $projectDevelopers)->with('ticket', $ticket)->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities)->with('assignedDevelopers', $assignedDevelopers);
+        return view('tickets.edit')->with('projectDevelopers', $projectDevelopers)->with('ticket', $ticket)->with('ticket_projects', $ticket_projects)->with('ticket_types', $ticket_types)->with('ticket_statuses', $ticket_statuses)->with('ticket_priorities', $ticket_priorities)->with('assignedDevelopers', $assignedDevelopers);
     }
 
     /**
@@ -133,12 +128,21 @@ class TicketsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $login_user_id = auth()->user()->id;
+
+        $auditTrail = AuditTrail::create([
+            'action' => 'Updated ticket details',
+            'action_name' => $request->input("name"),
+            'id' => $login_user_id,
+        ]);
+        
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required'
         ]);
 
         $ticket = Ticket::find($id);
+        $ticket->project_id = $request->input('project');
         $ticket->ticket_name = $request->input("name");
         $ticket->ticket_desc = $request->input("description");
         $ticket->type_id = $request->input('ticket_types');
