@@ -2,39 +2,55 @@
 
 @section('content')
 <div class="content">
-    <h3>Project</h3>
-    <div>
-        {{$project->project_name}}
-    </div>
-    <br />
-    <h3>Project Description</h3>
-    <div>
-        {!!$project->project_desc!!}
-    </div>
-    <br />
-    <div class="row">
-        <div class="form-group col-md-6">
-            <h3>Project Managers</h3>
-            @foreach($projectManagers as $projectManager)
-            <div>
-                {{$projectManager->projectManager['name']}}
-            </div>
-            @endforeach
+    <div class="card text-center">
+        <div class="card-header">
+            <h3>Details for Project #{{$project->project_id}}</h3>
         </div>
-        <div class="form-group col-md-6">
-            <h3>Project Developers</h3>
-            @foreach($projectDevelopers as $projectDeveloper)
-            <div>
-                {{$projectDeveloper->projectDeveloper['name']}}
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="card-title">PROJECT NAME</h5>
+                    <div>
+                        {{$project->project_name}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">PROJECT DESCRIPTION</h5>
+                    <div>
+                        {{$project->project_desc}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">DUE DATE</h5>
+                    <div>
+                        {{$project->due_date->format('m/d/y')}}
+                    </div>
+                </div>
             </div>
-            @endforeach
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="card-title">PROJECT MANAGERS</h5>
+                    @foreach($projectManagers as $projectManager)
+                    <div>
+                        {{$projectManager->projectManager['name']}}
+                    </div>
+                    @endforeach
+                </div>
+                <div class="col-md-6">
+                    <h5 class="card-title">PROJECT DEVELOPERS</h5>
+                    @foreach($projectDevelopers as $projectDeveloper)
+                    <div>
+                        {{$projectDeveloper->projectDeveloper['name']}}
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            <hr>
+            <small>Created on {{$project->created_at}}</small>
         </div>
     </div>
-    <hr>
-    <small>Created on {{$project->created_at}}</small>
-    <hr>
-
-
+    <br/>
     {!!Form::open(['action' => ['App\Http\Controllers\ProjectsController@destroy', $project->project_id], 'method' =>
     'POST', 'class' => 'pull-right'])!!}
     {{Form::hidden('_method', 'DELETE')}}

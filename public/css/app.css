@@ -11143,3 +11143,7 @@ table.dataTable thead th {
   width: 325px;
 }
 
+.card-title {
+  font-weight: bold;
+}
+

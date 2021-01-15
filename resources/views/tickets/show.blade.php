@@ -2,55 +2,80 @@
 
 @section('content')
 <div class="content">
-    <h3>Ticket</h3>
-    <div>
-        {{$ticket->ticket_name}}
-    </div>
-    <br />
-    <h3>Ticket Description</h3>
-    <div>
-        {!!$ticket->ticket_desc!!}
-    </div>
-    <h3>Submitter</h3>
-    <div>
-        {!!$ticket->submitter['name']!!}
-    </div>
-    <br />
-    <div class="row">
-        <div class="form-group col-md-4">
-            <h3>Ticket Type</h3>
-            <div>
-                {!!$ticket->ticketType['type_name']!!}
-            </div>
+    <div class="card text-center">
+        <div class="card-header">
+            <h3>Details of ticket #{{$ticket->ticket_id}}</h3>
         </div>
-        <div class="form-group col-md-4">
-            <h3>Ticket Status</h3>
-            <div>
-                {!!$ticket->ticketStatus['status_name']!!}
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="card-title">TICKET</h5>
+                    <div>
+                        {{$ticket->ticket_name}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">TICKET DESCRIPTION</h5>
+                    <div>
+                        {!!$ticket->ticket_desc!!}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">PROJECT</h5>
+                    <div>
+                        {!!$ticket->ticketProject['project_name']!!}
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group col-md-4">
-            <h3>Ticket Priority</h3>
-            <div>
-                {!!$ticket->ticketPriority['priority_name']!!}
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="card-title">ASSIGNED DEVELOPER</h5>
+                    @foreach($assignedDevelopers as $assignedDeveloper)
+                    <div>
+                        {{$assignedDeveloper->assignedDeveloper['name']}}
+                    </div>
+                    @endforeach
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">SUBMITTED BY</h5>
+                    <div>
+                        {!!$ticket->submitter['name']!!}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">DUE DATE</h5>
+                    <div>
+                        {!!$ticket->due_date->format('m/d/y')!!}
+                    </div>
+                </div>
             </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="card-title">TICKET TYPE</h5>
+                    <div>
+                        {!!$ticket->ticketType['type_name']!!}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">TICKET STATUS</h5>
+                    <div>
+                        {!!$ticket->ticketStatus['status_name']!!}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">TICKET PRIORITY</h5>
+                    <div>
+                        {!!$ticket->ticketPriority['priority_name']!!}
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <small>Created on {{$ticket->created_at}}</small>
         </div>
     </div>
     <br/>
-    <h3>Project</h3>
-    <div>
-        {{$ticket->ticketProject['project_name']}}
-    </div>
-    <h3>Assigned developer</h3>
-    @foreach($assignedDevelopers as $assignedDeveloper)
-    <div>
-        {{$assignedDeveloper->assignedDeveloper['name']}}
-    </div>
-    @endforeach
-    <hr>
-    <small>Created on {{$ticket->created_at}}</small>
-    <hr>
-
     {!!Form::open(['action' => ['App\Http\Controllers\TicketsController@destroy', $ticket->ticket_id], 'method' =>
     'POST', 'class' => 'pull-right'])!!}
     {{Form::hidden('_method', 'DELETE')}}

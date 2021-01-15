@@ -86,8 +86,9 @@ class UsersController extends Controller
         $projectManagers = ProjectManager::where('id', '=', $id)->get();
         $projectDevelopers = ProjectDeveloper::where('id', '=', $id)->get();
         $assignedDevelopers = AssignedDeveloper::where('id', '=', $id)->get();
+        $assignedTickets = AssignedDeveloper::pluck('id')->where('id', '=', $id);
         $submittedTickets = Ticket::where('id', '=', $id)->get();
-        return view('users.show')->with('users', $users)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers)->with('assignedDevelopers', $assignedDevelopers)->with('submittedTickets', $submittedTickets);
+        return view('users.show')->with('users', $users)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers)->with('assignedDevelopers', $assignedDevelopers)->with('assignedTickets', $assignedTickets)->with('submittedTickets', $submittedTickets);
     }
 
     /**

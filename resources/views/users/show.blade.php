@@ -2,52 +2,78 @@
 
 @section('content')
 <div class="content">
-    <h3>Username</h3>
-    <div>
-        {{$users->name}}
+    <div class="card text-center">
+        <div class="card-header">
+            <h3>Details for User #{{$users->id}}</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="card-title">USERNAME</h5>
+                    <div>
+                        {{$users->name}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">EMAIL</h5>
+                    <div>
+                        {{$users->email}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="card-title">ROLE</h5>
+                    <div>
+                        {{$users->role['role_name']}}
+                    </div>
+                </div>
+            </div>
+            @if($users->role_id == 2)
+            <hr>
+            <h5 class="card-title">Projects Managing</h5>
+            @foreach($projectManagers as $projectManager)
+            <div>
+                {{$projectManager->project['project_name']}}
+            </div>
+            @endforeach
+            @endif
+            @if($users->role_id == 3)
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="card-title">Projects working on</h5>
+                    @foreach($projectDevelopers as $projectDeveloper)
+                    <div>
+                        {{$projectDeveloper->project['project_name']}}
+                    </div>
+                    @endforeach
+                </div>
+                <div class="col-md-6">
+                    <h5 class="card-title">Tickets Assigned</h5>
+                    @if(count($assignedTickets) > 0)
+                    @foreach($assignedDevelopers as $assignedDeveloper)
+                    <div>
+                        {{$assignedDeveloper->ticket['ticket_name']}}
+                    </div>
+                    @endforeach
+                    @else
+                    @endif
+                </div>
+            </div>
+            @endif
+            @if($users->role_id == 4)
+            <hr>
+            <h5 class="card-title">Tickets Submitted</h5>
+            @foreach($submittedTickets as $submittedTicket)
+            <div>
+                {{$submittedTicket->ticket_name}}
+            </div>
+            @endforeach
+            @endif
+            <hr>
+            <small>Created on {{$users->created_at}}</small>
+        </div>
     </div>
     <br />
-    <h3>Email</h3>
-    <div>
-        {{$users->email}}
-    </div>
-    <br />
-    <h3>Role</h3>
-    <div>
-        {{$users->role['role_name']}}
-    </div>
-    <br />
-    @if($users->role_id == 2)
-    <h3>Projects Managing</h3>
-    @foreach($projectManagers as $projectManager)
-    <div>
-        {{$projectManager->project['project_name']}}
-    </div>
-    @endforeach
-    @endif
-    @if($users->role_id == 3)
-    <h3>Projects working on</h3>
-    @foreach($projectDevelopers as $projectDeveloper)
-    <div>
-        {{$projectDeveloper->project['project_name']}}
-    </div>
-    @endforeach
-    <br />
-    <h3>Tickets Assigned</h3>
-    @foreach($assignedDevelopers as $assignedDeveloper)
-    <div>
-        {{$assignedDevelopers->ticket['ticket_name']}}
-    </div>
-    @endforeach
-    @endif
-    @if($users->role_id == 4)
-    <h3>Tickets Submitted</h3>
-    @foreach($submittedTickets as $submittedTicket)
-    <div>
-        {{$submittedTicket->ticket_name}}
-    </div>
-    @endforeach
-    @endif
 
     {!!Form::open(['action' => ['App\Http\Controllers\UsersController@destroy', $users->id], 'method' =>
     'POST', 'class' => 'pull-right'])!!}

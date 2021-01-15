@@ -7,7 +7,7 @@
 			<h3 class="align-left">List of tickets</h3>
 		</div>
 		<div class="col-md-6">
-			<a href="/tickets/create"><button type="button" class="btn btn-primary action-buttons align-right">Create a
+			<a href="/tickets/create"><button type="button" class="btn btn-primary action-buttons align-right btn-success">Create a
 					ticket</button></a>
 		</div>
 	</div>
@@ -17,7 +17,7 @@
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">NAME</th>
-				<th scope="col">SUBMITTER</th>
+				<th scope="col">SUBMITTED BY</th>
 				<th scope="col">TYPE</th>
 				<th scope="col">STATUS</th>
 				<th scope="col">PRIORITY</th>

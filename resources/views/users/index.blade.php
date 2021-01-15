@@ -7,7 +7,7 @@
             <h3 class="align-left">List of users</h3>
         </div>
         <div class="col-md-6">
-            <a href="/users/create"><button type="button" class="btn btn-primary action-buttons align-right">Create new
+            <a href="/users/create"><button type="button" class="btn btn-primary action-buttons align-right btn-success">Create new
                     User</button></a>
         </div>
     </div>

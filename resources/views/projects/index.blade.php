@@ -7,7 +7,7 @@
             <h3 class="align-left">List of projects</h3>
         </div>
         <div class="col-md-6">
-            <a href="/projects/create"><button type="button" class="btn btn-primary action-buttons align-right">Create a
+            <a href="/projects/create"><button type="button" class="btn btn-primary action-buttons align-right btn-success">Create a
                     project</button></a>
         </div>
     </div>
@@ -18,6 +18,7 @@
                 <th scope="col">#</th>
                 <th scope="col">NAME</th>
                 <th scope="col">CREATED</th>
+                <th scope="col">DUE DATE</th>
                 <th scope="col" class="projectActions">ACTIONS</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <td>{{$project->project_id}}</td>
                 <td>{{$project->project_name}}</td>
                 <td>{{$project->created_at->format('m/d/Y')}}</td>
+                <td>{{$project->due_date->format('m/d/Y')}}</td>
                 <td>
                     <div class="d-flex flex-column">
                         <div class="d-flex flex-row">
