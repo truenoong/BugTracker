@@ -102,7 +102,7 @@ class ProjectsController extends Controller
         $project = Project::find($id);
         $projectManagers = ProjectManager::where('project_id', '=', $id)->get();
         $projectDevelopers = ProjectDeveloper::where('project_id', '=', $id)->get();
-        return view('projects.show')->with('project', $project)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers);
+        return view('projects.show')->with('login_user_id', $login_user_id)->with('project', $project)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers);
     }
 
     /**
