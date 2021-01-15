@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-    <div class="card text-center">
+    <div class="card">
         <div class="card-header">
             <h3>Details of ticket #{{$ticket->ticket_id}}</h3>
         </div>

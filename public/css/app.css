@@ -11085,8 +11085,11 @@ a.text-dark:focus {
 }
 
 .cardAudit {
-  height: 250px;
-  overflow: scroll;
+  height: 288.46px;
+}
+
+.tableAudit {
+  overflow-y: scroll;
 }
 
 .dataTables_wrapper .dataTables_filter input {
@@ -11145,5 +11148,10 @@ table.dataTable thead th {
 
 .card-title {
   font-weight: bold;
+  margin-bottom: 0px;
+}
+
+h3 {
+  margin-bottom: 0px;
 }
 
