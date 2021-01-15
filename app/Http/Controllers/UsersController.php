@@ -31,8 +31,9 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $login_user_id = auth()->user()->id;
         $users = User::orderBy('id')->get();
-        return view('users.index')->with('users', $users);
+        return view('users.index')->with('login_user_id', $login_user_id)->with('users', $users);
     }
 
     /**
@@ -82,13 +83,14 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+        $login_user_id = auth()->user()->id;
         $users = User::find($id);
         $projectManagers = ProjectManager::where('id', '=', $id)->get();
         $projectDevelopers = ProjectDeveloper::where('id', '=', $id)->get();
         $assignedDevelopers = AssignedDeveloper::where('id', '=', $id)->get();
         $assignedTickets = AssignedDeveloper::pluck('id')->where('id', '=', $id);
         $submittedTickets = Ticket::where('id', '=', $id)->get();
-        return view('users.show')->with('users', $users)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers)->with('assignedDevelopers', $assignedDevelopers)->with('assignedTickets', $assignedTickets)->with('submittedTickets', $submittedTickets);
+        return view('users.show')->with('login_user_id', $login_user_id)->with('users', $users)->with('projectManagers', $projectManagers)->with('projectDevelopers', $projectDevelopers)->with('assignedDevelopers', $assignedDevelopers)->with('assignedTickets', $assignedTickets)->with('submittedTickets', $submittedTickets);
     }
 
     /**

@@ -6,16 +6,17 @@
         <div class="col-md-6">
             <h3 class="align-left">List of users</h3>
         </div>
+        @if ($login_user_id == '1')
         <div class="col-md-6">
             <a href="/users/create"><button type="button" class="btn btn-primary action-buttons align-right btn-success">Create new
                     User</button></a>
         </div>
+        @endif
     </div>
     <br />
     <table class="table tableText" id="datatable">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">USERNAME</th>
                 <th scope="col">EMAIL</th>
                 <th scope="col">ROLE</th>
@@ -27,7 +28,6 @@
             @if(count($users) > 0)
             @foreach($users as $user)
             <tr>
-                <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role['role_name']}}</td>
@@ -39,10 +39,12 @@
                                 <a href="/users/{{$user->id}}"><button type="button"
                                         class="btn btn-primary action-buttons table-buttons">View more</button></a>
                             </div>
+                            @if ($login_user_id == '1' or $login_user_id == '2')
                             <div class="p-2">
                                 <a href="/users/{{$user->id}}/edit"><button type="button"
                                         class="btn btn-primary action-buttons table-buttons">Edit</button></a>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </td>

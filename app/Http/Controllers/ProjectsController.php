@@ -29,8 +29,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
+        $login_user_id = auth()->user()->id;
         $projects = Project::orderBy('project_id')->get();
-        return view('projects.index')->with('projects', $projects);
+        return view('projects.index')->with('login_user_id', $login_user_id)->with('projects', $projects);
     }
 
     /**
@@ -97,6 +98,7 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
+        $login_user_id = auth()->user()->id;
         $project = Project::find($id);
         $projectManagers = ProjectManager::where('project_id', '=', $id)->get();
         $projectDevelopers = ProjectDeveloper::where('project_id', '=', $id)->get();

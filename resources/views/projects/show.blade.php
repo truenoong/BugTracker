@@ -51,10 +51,12 @@
         </div>
     </div>
     <br/>
+    @if ($login_user_id == '1' or $login_user_id == '2')
     {!!Form::open(['action' => ['App\Http\Controllers\ProjectsController@destroy', $project->project_id], 'method' =>
     'POST', 'class' => 'pull-right'])!!}
     {{Form::hidden('_method', 'DELETE')}}
     {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
     {!!Form::close()!!}
+    @endif
 </div>
 @endsection

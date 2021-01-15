@@ -32,9 +32,9 @@ class TicketsController extends Controller
      */
     public function index()
     {
+        $login_user_id = auth()->user()->id;
         $tickets = Ticket::orderBy('ticket_id')->get();
-
-        return view('tickets.index')->with('tickets', $tickets);
+        return view('tickets.index')->with('login_user_id', $login_user_id)->with('tickets', $tickets);
     }
 
     /**
@@ -95,10 +95,10 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
+        $login_user_id = auth()->user()->id;
         $ticket = Ticket::find($id);
         $assignedDevelopers = AssignedDeveloper::where('ticket_id', '=', $id)->get();
-
-        return view('tickets.show')->with('ticket', $ticket)->with('assignedDevelopers', $assignedDevelopers);
+        return view('tickets.show')->with('login_user_id', $login_user_id)->with('ticket', $ticket)->with('assignedDevelopers', $assignedDevelopers);
     }
 
     /**

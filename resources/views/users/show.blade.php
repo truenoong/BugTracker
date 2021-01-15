@@ -74,11 +74,12 @@
         </div>
     </div>
     <br />
-
+    @if ($login_user_id == '1')
     {!!Form::open(['action' => ['App\Http\Controllers\UsersController@destroy', $users->id], 'method' =>
     'POST', 'class' => 'pull-right'])!!}
     {{Form::hidden('_method', 'DELETE')}}
     {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
     {!!Form::close()!!}
+    @endif
 </div>
 @endsection
