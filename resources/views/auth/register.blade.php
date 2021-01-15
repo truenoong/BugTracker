@@ -47,12 +47,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <select class="form-control" id="role_id" name="role_id">
-                                    <option value="1">admin</option>
-                                    <option value="2">project manager</option>
-                                    <option value="3">developer</option>
-                                    <option value="4">submitter</option>
-                                </select>
+                                <input id="role_id" type="hidden" name="role_id" value="5">
                             </div>
                         </div>
                         
