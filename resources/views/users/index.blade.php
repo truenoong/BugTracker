@@ -4,7 +4,7 @@
 <div class="content">
     <div class="row">
         <div class="col-md-6">
-            <h3 class="align-left">List of users</h3>
+            <h4 class="align-left">List of users</h4>
         </div>
         @if ($login_user_id == '1')
         <div class="col-md-6">
@@ -21,7 +21,7 @@
                 <th scope="col">EMAIL</th>
                 <th scope="col">ROLE</th>
                 <th scope="col">CREATED</th>
-                <th scope="col">ACTIONS</th>
+                <th scope="col" class="actions">ACTIONS</th>
             </tr>
         </thead>
         <tbody id="tbody">

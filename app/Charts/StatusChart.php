@@ -23,10 +23,7 @@ class StatusChart extends BaseChart
         $resolved = Ticket::where('status_id', '=', '3')->get()->count();
         $closed = Ticket::where('status_id', '=', '4')->get()->count();
         return Chartisan::build()
-            ->labels(['Ticket by Status'])
-            ->dataset('Open', [$open])
-            ->dataset('In Progress', [$progress])
-            ->dataset('Resolved', [$resolved])
-            ->dataset('Closed', [$closed]);
+            ->labels(['Open', 'In Progress', 'Resolved', 'Closed'])
+            ->dataset('Ticket by Status', [$open, $progress, $resolved, $closed]);
     }
 }

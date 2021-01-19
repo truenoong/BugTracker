@@ -24,11 +24,7 @@ class TypeChart extends BaseChart
         $frontend = Ticket::where('type_id', '=', '4')->get()->count();
         $others = Ticket::where('type_id', '=', '4')->get()->count();
         return Chartisan::build()
-            ->labels(['Ticket by Type'])
-            ->dataset('Bugs', [$bugs])
-            ->dataset('Features', [$features])
-            ->dataset('Data Changes', [$data])
-            ->dataset('Frontend Changes', [$frontend])
-            ->dataset('Others', [$others]);
+            ->labels(['Bugs', 'Features', 'Data Changes', 'Frontend Changes', 'Others'])
+            ->dataset('', [$bugs, $features, $data, $frontend, $others]);
     }
 }

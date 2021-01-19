@@ -23,10 +23,7 @@ class PriorityChart extends BaseChart
         $medium = Ticket::where('priority_id', '=', '3')->get()->count();
         $high = Ticket::where('priority_id', '=', '4')->get()->count();
         return Chartisan::build()
-            ->labels(['Ticket by Priority'])
-            ->dataset('None', [$none])
-            ->dataset('Low', [$low])
-            ->dataset('Medium', [$medium])
-            ->dataset('High', [$high]);
+            ->labels(['None', 'Low', 'Medium', 'High'])
+            ->dataset('None', [$none, $low, $medium, $high]);
     }
 }

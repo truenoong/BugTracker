@@ -138,7 +138,8 @@ class TicketsController extends Controller
         
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'assigned_developers' => 'required'
         ]);
 
         $ticket = Ticket::find($id);

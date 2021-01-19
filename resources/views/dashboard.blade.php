@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="content">
-    <h3>{{$title ?? 'Dashboard'}}</h3>
+    <h4>{{$title ?? 'Dashboard'}}</h4>
     <br />
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">TICKETS BY PRIORITY</h5>
+                    <h6 class="card-title">TICKETS BY PRIORITY</h6>
                 </div>
                 <div class="card-body">
                     <div id="priorityChart" style="height: 200px;"></div>
@@ -18,7 +18,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">TICKETS BY TYPE</h5>
+                    <h6 class="card-title">TICKETS BY TYPE</h6>
                 </div>
                 <div class="card-body">
                     <div id="typeChart" style="height: 200px;"></div>
@@ -31,7 +31,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">TICKETS BY STATUS</h5>
+                    <h6 class="card-title">TICKETS BY STATUS</h6>
                 </div>
                 <div class="card-body">
                     <div id="statusChart" style="height: 200px;"></div>
@@ -41,7 +41,7 @@
         <div class="col-md-6">
             <div class="card cardAudit">
                 <div class="card-header">
-                    <h5 class="card-title">AUDIT LOG</h5>
+                    <h6 class="card-title">AUDIT LOG</h6>
                 </div>
                 <div class="card-body tableAudit">
                     <table class="table tableText" id="datatable">
@@ -79,22 +79,24 @@
           el: '#priorityChart',
           url: "@chart('priority_chart')",
           hooks: new ChartisanHooks()
-          .colors()
+          .datasets('doughnut')
+          .pieColors()
         });
 
         const typeChart = new Chartisan({
           el: '#typeChart',
           url: "@chart('type_chart')",
           hooks: new ChartisanHooks()
-          .colors()
+          .datasets('doughnut')
+          .pieColors()
         });
 
         const statusChart = new Chartisan({
           el: '#statusChart',
           url: "@chart('status_chart')",
           hooks: new ChartisanHooks()
-          .colors()
-          .borderColors()
+          .datasets('doughnut')
+          .pieColors()
         });
 </script>
 @endsection

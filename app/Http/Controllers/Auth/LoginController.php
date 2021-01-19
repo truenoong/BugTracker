@@ -72,7 +72,7 @@ class LoginController extends Controller
 
         if (auth()->attempt(['name' => $request->input('identity'), 'password' => $request->input('password')] , $remember_me)) {
             $user = auth()->user();
-            // fill in username and pw
+            $value = $request->cookie('name');
         } else if (auth()->attempt(['email' => $request->input('identity'), 'password' => $request->input('password')] , $remember_me)) {
             $user = auth()->user();
             // fill in username and pw
