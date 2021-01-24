@@ -4,7 +4,7 @@
 <div class="content">
     <div class="card">
         <div class="card-header">
-            <h3>Details of ticket #{{$ticket->ticket_id}}</h3>
+            <h4>Details of ticket #{{$ticket->ticket_id}}</h4>
         </div>
         <div class="card-body">
             <div class="row">
@@ -29,14 +29,6 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-md-4">
-                    <h5 class="card-title">ASSIGNED DEVELOPER</h5>
-                    @foreach($assignedDevelopers as $assignedDeveloper)
-                    <div>
-                        {{$assignedDeveloper->assignedDeveloper['name']}}
-                    </div>
-                    @endforeach
-                </div>
                 <div class="col-md-4">
                     <h5 class="card-title">SUBMITTED BY</h5>
                     <div>
@@ -73,6 +65,30 @@
             </div>
             <hr>
             <small>Created on {{$ticket->created_at}}</small>
+        </div>
+    </div>
+    <br />
+    <div class="card">
+        <div class="card-header">
+            <h4>Assigned Developers</h4>
+        </div>
+        <div class="card-body">
+            <table class="table tableText" id="datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">EMAIL</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    @foreach($assignedDevelopers as $assignedDeveloper)
+                    <tr>
+                        <td><a href="http://bugtracker.test/users/{{$assignedDeveloper->assignedDeveloper['id']}}">{{$assignedDeveloper->assignedDeveloper['name']}}</a></td>
+                        <td>{{$assignedDeveloper->assignedDeveloper['email']}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
     <br/>

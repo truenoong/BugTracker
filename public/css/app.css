@@ -11085,7 +11085,8 @@ body {
 }
 
 .table-buttons {
-  line-height: 0.65;
+  line-height: 0.75;
+  width: 150%;
 }
 
 .cardAudit {
@@ -11147,7 +11148,9 @@ table.dataTable thead th {
 }
 
 .actions {
-  width: 255px;
+  width: 200px;
+  background-image: none !important;
+  cursor: default !important;
 }
 
 .card-title {

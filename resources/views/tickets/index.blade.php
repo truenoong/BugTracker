@@ -32,7 +32,7 @@
 			<a href="/tickets/{{$ticket->ticket_id}}">
 				<tr>
 					<td>#{{$ticket->ticket_id}}</td>
-					<td>{{$ticket->ticket_name}}</td>
+					<td><a href="/tickets/{{$ticket->ticket_id}}">{{$ticket->ticket_name}}</a></td>
 					<td>{{$ticket->submitter['name']}}</td>
 					<td>{{$ticket->ticketType['type_name']}}</td>
 					<td>{{$ticket->ticketStatus['status_name']}}</td>
@@ -42,10 +42,6 @@
 					<td>
 						<div class="d-flex flex-column">
 							<div class="d-flex flex-row">
-								<div class="p-2">
-									<a href="/tickets/{{$ticket->ticket_id}}"><button type="button"
-											class="btn btn-primary action-buttons table-buttons">View More</button></a>
-								</div>
 								@if ($login_user_id == '1' or $login_user_id == '2' or $login_user_id == '3')
 								<div class="p-2">
 									<a href="/tickets/{{$ticket->ticket_id}}/edit"><button type="button"

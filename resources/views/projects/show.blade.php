@@ -4,7 +4,7 @@
 <div class="content">
     <div class="card">
         <div class="card-header">
-            <h3>Details for Project #{{$project->project_id}}</h3>
+            <h4>Details for Project #{{$project->project_id}}</h4>
         </div>
         <div class="card-body">
             <div class="row">
@@ -28,29 +28,63 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <h5 class="card-title">PROJECT MANAGERS</h5>
-                    @foreach($projectManagers as $projectManager)
-                    <div>
-                        {{$projectManager->projectManager['name']}}
-                    </div>
-                    @endforeach
-                </div>
-                <div class="col-md-6">
-                    <h5 class="card-title">PROJECT DEVELOPERS</h5>
-                    @foreach($projectDevelopers as $projectDeveloper)
-                    <div>
-                        {{$projectDeveloper->projectDeveloper['name']}}
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-            <hr>
             <small>Created on {{$project->created_at}}</small>
         </div>
     </div>
-    <br/>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Project Managers</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table tableText" id="datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">NAME</th>
+                                <th scope="col">EMAIL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            @foreach($projectManagers as $projectManager)
+                            <tr>
+                                <td><a href="http://bugtracker.test/users/{{$projectManager->projectManager['id']}}">{{$projectManager->projectManager['name']}}</a></td>
+                                <td>{{$projectManager->projectManager['email']}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Project Managers</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table tableText" id="datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">NAME</th>
+                                <th scope="col">EMAIL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            @foreach($projectDevelopers as $projectDeveloper)
+                            <tr>
+                                <td><a href="http://bugtracker.test/users/{{$projectDeveloper->projectDeveloper['id']}}">{{$projectDeveloper->projectDeveloper['name']}}</a></td>
+                                <td>{{$projectDeveloper->projectDeveloper['email']}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
     @if ($login_user_id == '1' or $login_user_id == '2')
     {!!Form::open(['action' => ['App\Http\Controllers\ProjectsController@destroy', $project->project_id], 'method' =>
     'POST', 'class' => 'pull-right'])!!}
